@@ -1,0 +1,91 @@
+\documentclass[]{article}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[shortlabels]{enumitem}
+\usepackage{xcolor}
+
+\usepackage{geometry}
+\geometry{
+	left=2cm,
+	right=2cm
+}
+
+% Package used for creating hyperlinks
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=blue,
+%	citecolor=red,
+%	urlcolor=blue,
+%	pdfnewwindow=true
+%}
+
+% Package for graphs, diagrams, and charts
+%\usepackage{tikz}
+%\usepackage{tikz-cd}
+%\graphicspath{ {./images/} }
+
+\renewcommand{\Pr}[1]{\text{Pr}\left(#1\right)} % For probability to look like Pr(...)
+
+\let\oldemptyset\emptyset % Rebind the crappy looking emptyset to another variable
+\let\emptyset\varnothing % and redfine emptyset as the good looking one
+
+\let\oldphi\phi % Rebind the crappy looking phi to another variable
+\let\phi\varphi % and redefine phi as the good looking one
+
+
+\newcommand\<{\ensuremath{\left\langle}}
+\renewcommand\>{\ensuremath{\right\rangle}}
+% Common math environments
+\newcommand{\kk}{\ensuremath{\Bbbk}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}} 
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}} 
+\newcommand{\cO}{\ensuremath{\mathcal{O}}} 
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}} 
+\newcommand{\Gal}{\ensuremath{\mathrm{Gal}}} 
+
+
+% Solution environment. Basically just a standard proof environment but titled as "solution"
+\newenvironment{solution}
+{
+	\begin{proof}[Solution] \text{ }
+		\\
+	}
+	{
+	\end{proof}
+}
+
+\newenvironment{graybox}{%
+	\begin{lrbox}{\grayboxcontent}%
+		\begin{minipage}{\textwidth}%
+		}{%
+		\end{minipage}%
+	\end{lrbox}%
+	\colorbox{gray!20}{\usebox{\grayboxcontent}}%
+}
+
+\newsavebox{\grayboxcontent} % Create a savebox to store the content
+
+%Light gray box is for subproblems
+\newenvironment{lightgraybox}{%
+	\begin{lrbox}{\lightgrayboxcontent}%
+		\begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule}%
+		}{%
+		\end{minipage}%
+	\end{lrbox}%
+	\colorbox{gray!10}{\usebox{\lightgrayboxcontent}}%
+}
+
+\newsavebox{\lightgrayboxcontent} % Create a savebox to store the content
+
+
+%opening
+\title{}
+\author{Evan Curry Wilbur}
+
+\begin{document}
+\maketitle
+\end{document}
