@@ -24,6 +24,9 @@
 %\usepackage{tikz-cd}
 %\graphicspath{ {./images/} }
 
+\usepackage{graphicx}
+\usepackage{animate}
+
 \renewcommand{\Pr}[1]{\text{Pr}\left(#1\right)} % For probability to look like Pr(...)
 
 \let\oldemptyset\emptyset % Rebind the crappy looking emptyset to another variable
@@ -81,6 +84,12 @@
 
 \newsavebox{\lightgrayboxcontent} % Create a savebox to store the content
 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+
 
 %opening
 \title{A Visual Introduction to Curvature}
@@ -88,7 +97,6 @@
 
 \begin{document}
 	\maketitle
-	
 	\begin{abstract}
 		This paper seeks to cover what one would learn in a years long graduate course in Riemannian geometry in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. Much reliance will be given to the reader's understanding of inner product spaces, determinants, linear transformations, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right. As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful. However, a course in vector calculus is not required.
 		\\
@@ -98,13 +106,36 @@
 	\end{abstract}
 	
 	\section{Manifolds}
-	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made in the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of curved surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand.\\
+	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made in the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
 	\\
 	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a manifold in a way similar to how a spaceship would navigate through the solar system, or how an ant would walk along a table. It will be clear, by how we define charts, that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
 	\\
-	To remedy this, we will ``stitch together'' different charts to create manifolds, the topic of discussion for the remainder of the paper
+	To remedy this, we will ``stitch together'' different charts to create a manifold, the central object of discussion for the remainder of the paper. Once some examples of manifolds have been given, we will begin discussing idea of smoothness and differentiability on a manifolds.
 	\subsection*{Charts}
-	
+	At its most distilled, a chart is a map of some space around a point. Anyone who has picked up a map, used a GPS, or fantasized being a navigator in Star Trek is already familiar with the idea of charts. The chart is not the object of study in and of itself, much in the same way a map is not the area it seeks to represent. Rather, with a chart in hand we may point to a position on it, and we shall get a corresponding point on the surface we are studying. The animation below gives an intuition of how a chart can map out part of the surface $z = \sin(x + y)$.
+	\\
+	\begin{figure}[h]
+		\centering
+		%\animategraphics[autoplay, loop, width=\textwidth]{32}{media/animations/chart1/chart/frame-}{16}{110}
+	\end{figure}
+	\\
+	\noindent
+	From the animation, we can start to make some observations and develop an intuition for what charts do. First, they make the curvy space appear flat. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to another path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
+	\begin{definition}
+		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$ for some surface $M$.
+	\end{definition}
+	\noindent
+	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}, which will be done shortly. Before that, however, a quick disclaimer. The definitions for these terms will not be the same as one is likely to find in a topology course. They are deliberately tailored and narrowed to fit the scope of this paper. While the definitions will surly differ from a proper topology course, within the scope of the paper they will be equivalent. 
+	\begin{definition}
+		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_p(\varepsilon) = \{x : x \in \RR^n, |x - p| < \varepsilon\}$.
+	\end{definition}
+	\begin{definition}
+		A set $U \subseteq \RR^n$ is open if for every $p \in U$ there exists an $\varepsilon \in \RR$ such that $B_p(\varepsilon) \subseteq U$.
+	\end{definition}
+	An open set is one where around every point there is a open ball which remains in the set. Intuitively, something living inside an open set would always be able to stretch out their arms at least a little, no matter where they are.
+	\begin{example}
+		content...
+	\end{example}
 	\subsection*{Manifold}
 	
 	\subsection*{Rough and Smooth Manifolds}
