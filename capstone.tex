@@ -3,11 +3,14 @@
 \usepackage[shortlabels]{enumitem}
 \usepackage{xcolor}
 
+\setlength{\parindent}{0pt}
+
 \usepackage{geometry}
 \geometry{
 	left=2cm,
-	right=2cm
+	right=2cm,
 }
+
 
 % Package used for creating hyperlinks
 %\usepackage{hyperref}
@@ -91,6 +94,24 @@
 \newtheorem{example}{Example}[section]
 
 
+\usepackage{verbatim}   % for the comment environment
+\usepackage{ifthen}
+\usepackage{lipsum}
+
+%\newcommand{\showfigure}{show figs}
+
+\newenvironment{displayfigure}[1][]
+	{%
+		\ifthenelse{\isundefined{\showfigure}}%
+		{\expandafter\comment}%
+		{\begin{figure}[#1]}%
+	}%
+	{%
+		\ifthenelse{\isundefined{\showfigure}}%
+			{\expandafter\endcomment}%
+			{\end{figure}}%
+	}%
+
 %opening
 \title{A Visual Introduction to Curvature}
 \author{Evan Curry Wilbur}
@@ -98,6 +119,7 @@
 \begin{document}
 	\maketitle
 	\begin{abstract}
+		\indent
 		This paper seeks to cover what one would learn in a years long graduate course in Riemannian geometry in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. Much reliance will be given to the reader's understanding of inner product spaces, determinants, linear transformations, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right. As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful. However, a course in vector calculus is not required.
 		\\
 		\\
@@ -105,7 +127,7 @@
 		By no means should this be seen as a full and rigorous exploration into the vast topic of Riemannian and differential geometry; many tomes have be written doing such a task. Instead, it will leverage visual intuition of the space we occupy to make broad and powerful statements about surfaces more generally. Of course, visual intuition is limited by the dimension we occupy, so many generalizations will be stated, without proof, with references to where one could find proofs.
 	\end{abstract}
 	
-	\section{Manifolds}
+	\section{Making a Manifold}
 	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made in the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
 	\\
 	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a manifold in a way similar to how a spaceship would navigate through the solar system, or how an ant would walk along a table. It will be clear, by how we define charts, that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
@@ -113,34 +135,174 @@
 	To remedy this, we will ``stitch together'' different charts to create a manifold, the central object of discussion for the remainder of the paper. Once some examples of manifolds have been given, we will begin discussing idea of smoothness and differentiability on a manifolds.
 	\subsection*{Charts}
 	At its most distilled, a chart is a map of some space around a point. Anyone who has picked up a map, used a GPS, or fantasized being a navigator in Star Trek is already familiar with the idea of charts. The chart is not the object of study in and of itself, much in the same way a map is not the area it seeks to represent. Rather, with a chart in hand we may point to a position on it, and we shall get a corresponding point on the surface we are studying. The animation below gives an intuition of how a chart can map out part of the surface $z = \sin(x + y)$.
-	\\
-	\begin{figure}[h]
+	\begin{displayfigure}[h]
 		\centering
-		%\animategraphics[autoplay, loop, width=\textwidth]{32}{media/animations/chart1/chart/frame-}{16}{110}
-	\end{figure}
+		\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{20}{media/animations/chart1/chart/frame-}{16}{110}
+	\end{displayfigure}
 	\\
-	\noindent
 	From the animation, we can start to make some observations and develop an intuition for what charts do. First, they make the curvy space appear flat. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to another path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
 	\begin{definition}
-		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$ for some surface $M$.
+		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$.
 	\end{definition}
 	\noindent
 	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}, which will be done shortly. Before that, however, a quick disclaimer. The definitions for these terms will not be the same as one is likely to find in a topology course. They are deliberately tailored and narrowed to fit the scope of this paper. While the definitions will surly differ from a proper topology course, within the scope of the paper they will be equivalent. 
 	\begin{definition}
-		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_p(\varepsilon) = \{x : x \in \RR^n, |x - p| < \varepsilon\}$.
+		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_p(\varepsilon) = \{x : x \in \RR^n, |x - p| < \varepsilon\}$. When $p$ is omitted from the expression, it is assumed to be centered at the origin.
 	\end{definition}
 	\begin{definition}
 		A set $U \subseteq \RR^n$ is open if for every $p \in U$ there exists an $\varepsilon \in \RR$ such that $B_p(\varepsilon) \subseteq U$.
 	\end{definition}
+	\noindent
 	An open set is one where around every point there is a open ball which remains in the set. Intuitively, something living inside an open set would always be able to stretch out their arms at least a little, no matter where they are.
+	\begin{example}
+		An open ball in $\RR^2$ of radius 1 centered at the origin is open.
+		\\
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{20}{media/animations/open-ball/open-ball/frame-}{1}{90}
+		\end{displayfigure}
+		\\
+		The dashed line indicates that we are concerned with all the points up to the boundary. Notice as we move the dot around the ball, we may always shrink the red circle so that it lies entirely inside the ball.
+	\end{example}
+	\begin{example}
+		The closed ball of radius 1 $\bar{B} = \{x : x \in \RR^2, |x| \leq 1\}$ is not open.
+	\end{example}
+	\begin{displayfigure}[h]
+		\centering
+		\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{15}{media/animations/closed-ball/closed-ball/frame-}{1}{30}
+	\end{displayfigure}
+	Unlike in the previous example, this ball contains its boundary. No matter how small of a circle you draw around a point on the boundary, there will always be a part that remains outside the original circle. Therefore, the closed ball is not open.
+	\\
+	\\
+	With an understanding what an open set is, we are now ready to give the definition for a topological space
+	\begin{definition}
+		A topological space is a set $M$ along with a collection $\tau$ of open sets of $M$ such that
+		\begin{enumerate}[1.]
+			\item Both $M$ and the empty set are in $\tau$. Succinctly, $M \in \tau, \emptyset \in \tau$.
+			\item For any index set $U_i \in \tau, \hspace*{5px}\cup U_i \in \tau$. That is, an arbitrary union of open is open.
+			\item For any finite collection $U_k \in \tau, \hspace*{5px}\cap^n_{k=0} U_k \in \tau$. That is, finite intersections of open sets are open.
+		\end{enumerate}
+	\end{definition}
+	This definition is abstract by design. It is meant to encapsulate many possible, even unimaginable, topological spaces. However, for our purposes we need only translate this to our language with open balls and the ideas will be more clear
+	\begin{definition}
+		A topological space is a set $M \subseteq \RR^n$ with a collection $\tau$ of open balls of $M$ such that
+		\begin{enumerate}[1.]
+			\item The open balls $B(0) = \emptyset$ and $B(\infty) = \RR^n$ are in $\tau$.
+			\item Any union of open balls will be open.
+			\item Any finite intersection of open balls will be open.
+		\end{enumerate}
+	\end{definition}
+	
+	Finally, we get to the last of the vocabulary to unpack, \textit{homeomorphism}. When we think of two objects being homeomorphic, then we may continuously transform one into the other without ripping, tearing, or gluing our shape, and then back again.\\
+	\begin{displayfigure}[h]
+		\centering
+		\begin{minipage}{0.5\textwidth}
+			\animategraphics[loop,autoresume,autopause,autoplay, width=0.65\textwidth]{20}{media/animations/coffee-mug-donut/mug-torus/frame-}{1}{116}
+		\end{minipage}%
+		\begin{minipage}{0.5\textwidth}
+			\animategraphics[loop,autoresume,autopause,autoplay, width=1.5\textwidth]{13}{media/animations/homeo/homeo/frame-}{1}{75}
+		\end{minipage}
+	\end{displayfigure}\\
+	
+	Due to the animation on the left, mathematicians often joke that the topologist cannot distinguish between a coffee cup and a donut since the two are homeomorphic. While said in jest, it does underpin a critical point in topology. When two objects are homeomorphic to each other \textit{they are functionally the same object}.\\
+	\\
+	Another important idea illustrated in the animations is that, while we cannot rip, tear, or otherwise damage the object during a homeomorphism, we are freely allowed to stretch, warp, and even self-intersect as much as we would like. With that, here is the definition
+	\begin{definition}
+		A function $f : M \to N$ between topological spaces $M$ and $N$ is a homeomorphism if
+		\begin{enumerate}[1.]
+			\item $f$ is bijective.
+			\item $f$ is continuous.
+			\item $f^{-1}$ is continuous.
+		\end{enumerate}
+	\end{definition}
+	These three conditions encapsulate exactly the conditions mentioned previously, just in the language of topology. The requirement that $f$ and $f^{-1}$ be continuous forbids us from ripping, tearing, and otherwise damaging our space, with $f^{-1}$ also allowing us to ``undo'' the transformation. The requirement that $f$ is bijective means that we cannot ``squish'' open sets of our surface down to a point. It is possible to continuously transform a circle down to a point, there is no way to do this without collapsing the open sets of the circle. In the animation below, the parentheses indicate one of the open sets of the circle. It's clear that as the circle transforms continuously to a point, the open set collapses to a point as well. This violates (1) of the definition of homeomorphism, thus it cannot be a homeomorphism, despite being a continuous transformation.
+	\begin{displayfigure}[h]
+		\centering
+		\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{10}{media/animations/circle-dot/circle-dot/frame-}{1}{30}
+	\end{displayfigure}\\
+	
+	With the language out of the way, we now are in a position to understand charts in a way much more clear than the rigorous definition.
+	\begin{definition}
+		A chart is an open ball $U \subseteq \RR^n$ representing some surface $M$ in such a way that $U$ can be continuously transformed into $M$ and back again.
+	\end{definition} 
+	In essence, a chart is a flat map of a (potentially) curvy space.
+	\newpage
+	\begin{example}
+		The following animations illustrate a variety of charts and the surfaces they correspond to. Observe how they are all able to be continuously deformed into a flat surface and then back again.
+		\begin{displayfigure}[h]
+			\begin{minipage}{0.5\textwidth}
+				\centering
+				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{60}{media/animations/helicoid/helicoid/frame-}{17}{300}
+				\caption{Helicoid}
+			\end{minipage}
+			\begin{minipage}{0.5\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/monkey-saddle/monkey-saddle/frame-}{1}{30}
+				\caption{Monkey Saddle}
+			\end{minipage}\\
+			\begin{minipage}{0.5\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/paraboloid/paraboloid/frame-}{1}{30}
+				\caption{Paraboloid}
+			\end{minipage}
+			\begin{minipage}{0.5\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hemisphere/hemisphere/frame-}{1}{30}
+				\caption{Hemisphere}
+			\end{minipage}
+			\begin{minipage}{0.5\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hyperbolic-paraboloid/hyperbolic-paraboloid/frame-}{1}{30}
+				\caption{Hyperbolic Paraboloid}
+			\end{minipage}
+			\begin{minipage}{0.5\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hyperboloid/hyperboloid/frame-}{1}{30}
+				\caption{Hyperboloid}
+			\end{minipage}
+		\end{displayfigure}
+	\end{example}
+	\newpage
+	\subsection*{Manifolds}
+	In the previous section, we saw that we were able to construct many surfaces using just a single chart. It might be tempting to think that a theory of charts is all we need to study all conceivable surfaces. This, however, is not the case. The issue lies in the requirement that our charts be homeomorphic to the space they represent. This is a strong requirement that prevents us from studying many surfaces which may not be homeomorphic to flat space with charts alone.
+	\begin{example}
+		The sphere is not homeomorphic to flat Euclidean space, thus it cannot be represented by a single chart.
+		\begin{displayfigure}[h]
+			\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{30}{media/animations/sphere-not-flat/sphere-not-flat/frame-}{1}{75}
+		\end{displayfigure}
+	\end{example}
+	Illustrated in the animation is the unfortunate fact that we cannot transform the sphere into a flat surface without overlapping two different regions on the sphere onto the same region of a chart, in violation of rule (1) of the definition of homeomorphism. If the sphere were missing one of the poles, then it would in fact be possible to cover it in one chart. However, this requires that we puncture the sphere, a violation of rule (2). This is by no means meant to be a proof of the fact that we cannot cover the sphere in a single chart, rather it is only meant to illustrate what goes wrong when we try to. A curious reader would find that with only a brief exploration into topology, and in particular Brouwer's fixed point theorem, the proof that it is impossible to cover the sphere in a single chart is rather quick and enlightening.\\
+	\\
+	Since the theory of charts is not enough to study surfaces as typical and canonical as the sphere, we may wonder if is even worth talking about them at all. Is all hopelessly lost? Did the author really just spend the past $\thepage$ pages talking about something that has no bearing on the study of surfaces? Of course not. As is so common in mathematics, when our theory runs into a wall, we extend the theory so we may be able to walk up walls. \\
+	\\
+	The key idea is not to limit ourselves by using only a \textit{single} chart. Instead, we will use multiple charts to cover our surfaces. Each chart will represent a local patch of the surface. This local patch, by virtue of being covered by a chart, will look like an open set of Euclidean space. Because of this, we say that our surfaces are \textit{locally Euclidean}. A collection of charts which cover a surface, when taken in aggregate, will be powerful enough to describe a vast amount of spaces. This collection is called an \textit{atlas}, and the space which they cover is called a \textit{manifold}. With that, we present two definitions.
+	\begin{definition}
+		An atlas is a collection of charts of the same dimension.
+	\end{definition}
+	\begin{definition}
+		An $n$-dimensional manifold $M$ is a topological space such that for each point $p \in M$, there is a chart $U \subseteq \RR^n$ and a homeomorphism $\phi : U \to M$ such that $p \in \phi(U)$.
+	\end{definition}
+	With this definition now firmly established, we will cease to use the terms "surfaces" and instead use the more general term, manifold. The key idea here is that by considering collections of charts, we can study a vast collection of topological spaces.
+	\begin{example}
+		By covering the sphere in two charts, we are able to turn it into a manifold.
+	\end{example}
+	The animation shows that the charts of a manifold may overlap. On the region where charts overlap, we will have points which can be described by more than one chart. These regions of overlap will have a special consideration when we discuss smooth manifolds in the next section. For now, we will only consider how we can move between two charts which describe the same region of our manifold. 
+	\begin{definition}
+		Given two charts $(U, \phi), (V, \psi)$, of a manifold $M$, if $\phi(U) \cap \psi(V) \neq \emptyset$, then the transition map is the homeomorphism $\phi^{-1} \circ \psi : \RR^n \to \RR^n$.
+	\end{definition}
 	\begin{example}
 		content...
 	\end{example}
-	\subsection*{Manifold}
 	
-	\subsection*{Rough and Smooth Manifolds}
+	\subsection*{Smooth Manifolds}
+	So far, our discussion has been centered around building up an intuition and language for manifolds. We have actually answered the question posed at the very beginning of this paper, \textit{what is being curve}. The answer: manifolds. As is so common in mathematics, when one question is answered, others naturally arise. While we now know \textit{what} is being curved, we do not yet know \textit{how} it is being curved. Unfortunately, we are not in a position to answer this question just yet. The issue is that our definition for a manifold is not powerful enough to discuss topics as complex as curvature.\\
+	\\
+	If you recall, the way we built up to the definition of manifolds was my stitching together regions of flat space. We then were able to discuss and study manifold by referencing their charts. However, the charts are just open sets of Euclidean space. Not only are they flat, they are essentially as flat as mathematically possible. So how can we possibly discuss curvature with only our collection of charts? The answer is that we can't. The definition is simply not capable of expressing these ideas.\\
+	\\
+	Not all is lost, however. Much like we were able to extend our definition of charts to manifolds and expand the types of topological spaces we could talk about, we can build upon our current definition of manifolds in a way powerful enough to discuss curvature.\\
+	\\
+	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. Recall that our overall goal is to develop a theory so we may discuss curvature.
+	\begin{example}
+		content...
+	\end{example} 
 	
 	\section{The Measure of a Manifold}
+	
 	\subsection*{The Euclidean Metric}
 	\subsection*{The Riemannian Metric}
 	
