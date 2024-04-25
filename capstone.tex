@@ -5,7 +5,7 @@
 
 \setlength{\parindent}{0pt}
 
-\usepackage{geometry}
+%\usepackage{geometry}
 %\geometry{
 %	left=2cm,
 %	right=2cm,
@@ -290,14 +290,11 @@
 		Given two charts $(U, \phi), (V, \psi)$, of a manifold $M$, if $\phi(U) \cap \psi(V) \neq \emptyset$, then the transition map is the homeomorphism $\phi^{-1} \circ \psi : \RR^n \to \RR^n$.
 	\end{definition}
 	\begin{example}
-		\text{ }
-		\begin{center}
-			\begin{displayfigure}[h]
-				\includegraphics[scale=0.33]{transition-map/transition-map.png}
-			\end{displayfigure}
-		\end{center}
 		Shown is the manifold $M$ with two charts. The non-overlapping regions of $V$ and $U$ are colored red and blue respectively. Their shared region is colored green. We see how the transition map $\phi^{-1} \circ \psi$ maps \textit{between the charts}.
-		
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[scale=0.33]{transition-map/transition-map.png}
+		\end{displayfigure}
 	\end{example}
 	
 	
@@ -308,23 +305,62 @@
 	\\
 	Not all is lost, however. Much like we were able to extend our definition of charts to manifolds and expand the types of topological spaces we could talk about, we can build upon our current definition of manifolds in a way powerful enough to discuss curvature.\\
 	\\
-	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. Recall that our overall goal is to develop a theory so we may discuss curvature. Curvature, we understand, is a bending or change of direction of an object (or in our case, manifolds). However, it's not just any change of direction or bending. For example, a zig-zag line changes direction frequently, however, one wouldn't consider it ``curving'' through space. For something to be curved, it requires a smooth change of direction. \\
+	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. To do so, let us first introduce the concept of a path. We understand intuitively that a path is just some trajectory through space that doesn't have gaps or holes in it. The following definition expresses mathematically this idea
+	\begin{definition}
+		Let $M$ be a manifold. A path is a continuous function $[0, 1] \to M$.
+	\end{definition}
+	So a path is a function which maps a line segment continuously over a manifold.\\
+	\\
+	Recall that our overall goal is to develop a theory so we may discuss curvature. Curvature, we understand, is a bending or change of direction of an object (or in our case, manifolds). However, it's not just any change of direction or bending. For example, a zig-zag path changes direction frequently, however, one wouldn't consider it ``curving'' through space. For something to be curved, it requires a smooth change of direction. \\
 	\begin{example}
-		Both follow a very similar path through space. However, the image on the left consists of sharp and jagged turns while the one on the right takes smoother turns. The one on the left does not appear to curve while the one on the right does.
-		\begin{center}
-			\begin{displayfigure}[h]
+		Both paths follow a very similar trajectory through space. However, the path on the left consists of sharp and jagged turns while the one on the right takes smoother turns. The one on the left does not appear to curve while the one on the right does.
+		\begin{displayfigure}[h]
+			\centering
 			\includegraphics[scale=0.4]{curve-and-zig-zag/curve-and-zig-zag.png}
 		\end{displayfigure}
-		\end{center}
 	\end{example}
 	Let's imagine a person walking along the zig-zag curve on the left. At first, they will walk in a straight line until they reach the first corner. When they arrive at the corner, they must pause, change their direction, and then proceed walking. Compare this to that same person walking along the path on the right. Unlike before, they do not need to stop in order to change direction. They instead are able to walk along the path while slowly adjusting their direction as they walk.
-	\begin{example}
-		CREATE ANIMATION OF TWO PATHS WITH TANGENT DIRECTIONS SHOWN. ONE WITH ZIG-ZAG AND THE OTHER WITH SINE CURVE
-	\end{example}
-	One key observation that we can make from Example 1.8 is how the direction the dot on the zig-zag path is moving changes abruptly when it reaches a corner. Compare this to the dot moving along the smooth curve. The direction it is moving does not change abruptly. If we wish to talk about curvature, we require that these tangent directions do not change abruptly.\\
-	\\
-	Let's explore this idea a bit more as it is essential to understanding smooth manifolds and curvature more broadly. In a first year calculus course, we learn of the derivative and how it is used to calculate the slope of the tangent line to functions. The tangent line indicates the instantaneous direction of the function at any given point. So, the directions indicated by the arrows in Example 1.8 are nothing more than the derivative of the paths, with additional information indicating the direction of travel. In fact, the derivatives of the paths were exactly what were used to compute the arrows in the animations!
 	
+	
+	
+	
+	\newpage
+	\begin{example}
+		One key observation that we can make is how the direction the dot on the zig-zag path is moving changes abruptly when it reaches a corner. Compare this to the dot moving along the smooth curve. The direction it is moving does not change abruptly. If we wish to talk about curvature, we require that these tangent directions do not change abruptly.
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay,width=\textwidth]{30}{media/animations/direction-path/direction-path/frame-}{1}{75}
+		\end{displayfigure}
+	\end{example}
+	Let's explore this idea a bit more as it is essential to understanding smooth manifolds and curvature more broadly. In a first year calculus course, we learn of the derivative and how it is used to calculate the slope of the tangent line to functions. The tangent line indicates the instantaneous direction of the function at any given point. So, the directions indicated by the arrows in Example 1.8 are nothing more than the derivative of the paths, with additional information indicating the direction of travel. In fact, the derivatives of the equations for the paths were exactly what were used to compute the direction of the arrows in the animations!
+	\begin{definition}
+		Let $M$ be a manifold. The derivative of a path $f : [0, 1] \to M$ at time $t_0 \in [0,1]$ is a vector. The direction of the vector indicates the direction of travel along the path as a particle moves through $t_0$ from $[0, 1]$. The magnitude of the vector is the speed of the particle at time $t_0$. 
+	\end{definition}
+	\begin{definition}
+		A smooth path is a path whose derivative is continuous. That is, the direction and speed of the derivative are continuous.
+	\end{definition}
+	The problem with the zig-zag path can now be stated more mathematically. The corners where we make abrupt changes in direction are discontinuities of the derivative of the path. Thus, we shall require that all paths have continuous derivatives. In other words, the vector along a path has no sudden or abrupt changes in speed or direction.\\
+	\\
+	We are now in a position to define what a smooth manifold is by utilizing the notion of a smooth path. We understand that a manifold can be realized as a collection of charts. If we have a smooth path on a chart, then for a manifold to be smooth it will be necessary that the corresponding path on the manifold be smooth as well.
+	\begin{example}
+		Despite the fact that the path on the chart is smooth, because the manifold has sharp corner, the corresponding path is not smooth. Thus, the manifold is not smooth.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.3\textwidth]{nonsmooth-manifold/nonsmooth-manifold.png}
+		\end{displayfigure}
+	\end{example}
+	\begin{example}
+		The sphere is a smooth manifold. Every smooth path drawn on a chart of the sphere is itself smooth.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.2\textwidth]{smooth-manifold/smooth-manifold.png}
+		\end{displayfigure}
+	\end{example}
+	With respect to our discussion of smooth paths, it might be tempting to define a smooth manifold as one where every smooth path on a chart produces a smooth path on the manifold. Intuitively, this idea is correct. However, it turns out that when defining these concepts more rigorously, such a definition requires us to be able to compute the derivatives of these paths on the manifold. This isn't a problem with the manifolds we've seen so far because we've been visualizing all our manifolds as being embedded in a surrounding space. Mathematicians, however, prefer to divorce the idea of a manifold and the space which it occupies. They wish to treat the manifold \textit{as a space unto itself}. If we were to accept this definition for smooth manifolds, it would require that we reinvent calculus on every manifold to define what it even means to take a derivative on a manifold. To avoid undertaking such an insurmountable task just to define what it means for a surface to be smooth, mathematicians instead consider an alternative approach involving the differentiability of transition maps between charts of a manifold. Since we understand what it means for a function to be differentiable in $\RR^n$, and transition maps are simply functions $\RR^n \to \RR^n$, we can define a smooth manifold as one where the transition maps are differentiable. Realize, however, that defining smoothness via the transition maps or by requiring that smooth paths on charts be smooth on the manifold gives exactly the same realization of smoothness. 
+	
+	\begin{definition}
+		An $n$-dimensional manifold $M$ is smooth if, whenever two charts $(U, \phi)$ and $(V, \psi)$ of $M$ overlap, the transition map $\phi^{-1} \circ \psi : \RR^n \to \RR^n$ is differentiable. 
+	\end{definition}
 	
 	
 	
