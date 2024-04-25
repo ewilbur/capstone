@@ -6,10 +6,10 @@
 \setlength{\parindent}{0pt}
 
 \usepackage{geometry}
-\geometry{
-	left=2cm,
-	right=2cm,
-}
+%\geometry{
+%	left=2cm,
+%	right=2cm,
+%}
 
 
 % Package used for creating hyperlinks
@@ -23,9 +23,9 @@
 	%}
 
 % Package for graphs, diagrams, and charts
-%\usepackage{tikz}
-%\usepackage{tikz-cd}
-%\graphicspath{ {./images/} }
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\graphicspath{ {./media/images/} }
 
 \usepackage{graphicx}
 \usepackage{animate}
@@ -130,7 +130,7 @@
 	\section{Making a Manifold}
 	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made in the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
 	\\
-	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a manifold in a way similar to how a spaceship would navigate through the solar system, or how an ant would walk along a table. It will be clear, by how we define charts, that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
+	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a manifold in a way similar to how a spaceship would navigate through the solar system or how an ant would walk along a table. It will be clear, by how we define charts, that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
 	\\
 	To remedy this, we will ``stitch together'' different charts to create a manifold, the central object of discussion for the remainder of the paper. Once some examples of manifolds have been given, we will begin discussing idea of smoothness and differentiability on a manifolds.
 	\subsection*{Charts}
@@ -140,7 +140,7 @@
 		\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{20}{media/animations/chart1/chart/frame-}{16}{110}
 	\end{displayfigure}
 	\\
-	From the animation, we can start to make some observations and develop an intuition for what charts do. First, they make the curvy space appear flat. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to another path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
+	From the animation, we can start to make some observations and develop an intuition for what charts do. First, they make the curvy space appear flat. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to the other path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
 	\begin{definition}
 		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$.
 	\end{definition}
@@ -279,15 +279,27 @@
 	\end{definition}
 	With this definition now firmly established, we will cease to use the terms "surfaces" and instead use the more general term, manifold. The key idea here is that by considering collections of charts, we can study a vast collection of topological spaces.
 	\begin{example}
-		By covering the sphere in two charts, we are able to turn it into a manifold.
+		By covering the sphere in two charts, we are able to turn it into a manifold.\\
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay,palindrome, width=\textwidth]{30}{media/animations/sphere-manifold/sphere-manifold/frame-}{1}{75}
+		\end{displayfigure}
 	\end{example}
 	The animation shows that the charts of a manifold may overlap. On the region where charts overlap, we will have points which can be described by more than one chart. These regions of overlap will have a special consideration when we discuss smooth manifolds in the next section. For now, we will only consider how we can move between two charts which describe the same region of our manifold. 
 	\begin{definition}
 		Given two charts $(U, \phi), (V, \psi)$, of a manifold $M$, if $\phi(U) \cap \psi(V) \neq \emptyset$, then the transition map is the homeomorphism $\phi^{-1} \circ \psi : \RR^n \to \RR^n$.
 	\end{definition}
 	\begin{example}
-		content...
+		\text{ }
+		\begin{center}
+			\begin{displayfigure}[h]
+				\includegraphics[scale=0.33]{transition-map/transition-map.png}
+			\end{displayfigure}
+		\end{center}
+		Shown is the manifold $M$ with two charts. The non-overlapping regions of $V$ and $U$ are colored red and blue respectively. Their shared region is colored green. We see how the transition map $\phi^{-1} \circ \psi$ maps \textit{between the charts}.
+		
 	\end{example}
+	
 	
 	\subsection*{Smooth Manifolds}
 	So far, our discussion has been centered around building up an intuition and language for manifolds. We have actually answered the question posed at the very beginning of this paper, \textit{what is being curve}. The answer: manifolds. As is so common in mathematics, when one question is answered, others naturally arise. While we now know \textit{what} is being curved, we do not yet know \textit{how} it is being curved. Unfortunately, we are not in a position to answer this question just yet. The issue is that our definition for a manifold is not powerful enough to discuss topics as complex as curvature.\\
@@ -296,23 +308,60 @@
 	\\
 	Not all is lost, however. Much like we were able to extend our definition of charts to manifolds and expand the types of topological spaces we could talk about, we can build upon our current definition of manifolds in a way powerful enough to discuss curvature.\\
 	\\
-	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. Recall that our overall goal is to develop a theory so we may discuss curvature.
+	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. Recall that our overall goal is to develop a theory so we may discuss curvature. Curvature, we understand, is a bending or change of direction of an object (or in our case, manifolds). However, it's not just any change of direction or bending. For example, a zig-zag line changes direction frequently, however, one wouldn't consider it ``curving'' through space. For something to be curved, it requires a smooth change of direction. \\
 	\begin{example}
-		content...
-	\end{example} 
+		Both follow a very similar path through space. However, the image on the left consists of sharp and jagged turns while the one on the right takes smoother turns. The one on the left does not appear to curve while the one on the right does.
+		\begin{center}
+			\begin{displayfigure}[h]
+			\includegraphics[scale=0.4]{curve-and-zig-zag/curve-and-zig-zag.png}
+		\end{displayfigure}
+		\end{center}
+	\end{example}
+	Let's imagine a person walking along the zig-zag curve on the left. At first, they will walk in a straight line until they reach the first corner. When they arrive at the corner, they must pause, change their direction, and then proceed walking. Compare this to that same person walking along the path on the right. Unlike before, they do not need to stop in order to change direction. They instead are able to walk along the path while slowly adjusting their direction as they walk.
+	\begin{example}
+		CREATE ANIMATION OF TWO PATHS WITH TANGENT DIRECTIONS SHOWN. ONE WITH ZIG-ZAG AND THE OTHER WITH SINE CURVE
+	\end{example}
+	One key observation that we can make from Example 1.8 is how the direction the dot on the zig-zag path is moving changes abruptly when it reaches a corner. Compare this to the dot moving along the smooth curve. The direction it is moving does not change abruptly. If we wish to talk about curvature, we require that these tangent directions do not change abruptly.\\
+	\\
+	Let's explore this idea a bit more as it is essential to understanding smooth manifolds and curvature more broadly. In a first year calculus course, we learn of the derivative and how it is used to calculate the slope of the tangent line to functions. The tangent line indicates the instantaneous direction of the function at any given point. So, the directions indicated by the arrows in Example 1.8 are nothing more than the derivative of the paths, with additional information indicating the direction of travel. In fact, the derivatives of the paths were exactly what were used to compute the arrows in the animations!
 	
+	
+	
+	
+	
+	\newpage
 	\section{The Measure of a Manifold}
+	Up to this point, we have really only been developing the preliminary topology and definitions necessary for any coherent discussion of curvature. We have done little in the way of discussing the core focus of this paper \textit{curvature.} That changes now. In this section and those that follow, we will finally utilize our new language and tools from calculus and linear algebra to discuss the nature of curvature. To do this, we will first construct the \textit{tangent space} to a surface. This idea is fundamental to the rest of the paper, so many examples and visuals will be given to aid the reader's understanding of it. However, the rigorous construction of the tangent space will be left to those who wish to take a course in differential geometry. The purpose here is to give the intuition and insight to this concept. Once done, we will introduce the notion of a metric on a space. For those familiar with analysis, this notion of a metric is different from that learned when studying metric spaces, however they are very related.  
+	
+	\subsection*{The Tangent Space}
+	You, the budding mathematician eager to apply these new ideas involving manifolds have decided to take it upon yourself to study a number of manifolds. You grab a trusty atlas so you can navigate around it successfully. As you walk along the manifold, using the atlas to keep track of where you are at, you feel excitement as you explore this newfound world of manifolds. Keen to learn more, you make observations. You note that 
 	
 	\subsection*{The Euclidean Metric}
 	\subsection*{The Riemannian Metric}
 	
-	\section{Connections}
-	\subsection*{Vector Fields}
-	\subsection*{Geodesics}
+%	\section{Connections}
+%	\subsection*{Vector Fields}
+%	\subsection*{Geodesics}
 	
+	
+	
+	\newpage
 	\section{Curvature}
+	Our theory is developed enough to finally begin exploring the main topic of this paper: curvature. In much the same way we built up a theory of manifolds starting from the basic charts, building all the way up to smooth manifolds, we develop our theory of curvature by studying how simple manifolds curve. We will then generalize these ideas to more complicated manifolds to broaden our theory. 
 	
-	
-	
+	\subsection*{One Dimensional Curvature}
+	If we have any hope in understanding curvature in a general sense, we should start by studying curvature on simple manifolds and generalize the idea to more complicated ones. Naturally, a question to have would be \textit{what is a simple manifold?} For our study, the simplest manifolds we can work with are one dimensional manifolds. Recall from the definition that a manifold is something that ``looks'' locally Euclidean. Most of the examples we've seen so far have been two dimensional manifolds (surfaces), primarily because they provide the best insight for developing the intuition behind our theory as well as the most engaging visualizations for them. However, our discussion of curvature will begin with one dimensional manifolds. Conceptually, we think of these one dimensional manifolds as a path in space.
+	\begin{example}
+		Examples of curves and one dimensional manifolds. At least one of these examples needs to be a straight line and the other needs to be something curvy
+	\end{example}
+	As the phrase ``one dimensional manifolds'' can be quite a mouthful, we often refer to these objects as a ``path'' or ``curve''. 
+	\begin{definition}
+		A curve or path is a one dimensional manifold.
+	\end{definition}
+	In example 3.1, we saw some curves which appeared curvy, while others we decidedly straight. This notion of curvature seems intuitively obvious. So much so that even a small child will have no trouble categorizing which of the curves is curvy and which are not. However, just as we had an intuitive concept of what a surface was, but developed the theory of manifolds so we had a language and formalism to discuss them, we approach this concept with a little more rigor than simply our intuition.\\
+	\\
+	Imagine you are driving in a car along a straight highway at a constant speed. Our experience with the physical world tells us that you will not feel any force acting on you while driving. Eventually, you approach a curve. Without slowing down you take the turn. Suddenly, you feel a force towards the center of your turn. Your speed didn't change, but nonetheless a force was felt. After the turn, you continue driving straight ahead and resume not feeling any force on you. Thinking to yourself, you realize that as long as you maintain your speed, any force felt by you or the passengers would indicate a turn, or change of direction. Interestingly, even someone completely blindfolded, or not looking outside the car at all, could determine when they are turning and when they are not, simply by feeling the forces acting on them while inside the car. This is the key idea. Because a force is felt only when the car is turning, we can detect turns on our path by measuring the forces we feel along the path.\\
+	\\
+	Those familiar with Newton's laws know that the force of an object is given by the object's mass times it's acceleration. The acceleration of an object is the second derivative of the object's position. 
 	
 \end{document}

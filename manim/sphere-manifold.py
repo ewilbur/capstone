@@ -8,7 +8,7 @@ class SphereManifold(ThreeDScene):
         hemisphereL = Surface(
             lambda u, v: np.array([np.cos(u)*np.sin(v), np.sin(u)*np.sin(v), np.cos(v)]),
             u_range = (0,TAU),
-            v_range = (0,TAU/2.5),
+            v_range = (0,TAU/3.5),
             resolution= res,
             fill_opacity=0.35,
             fill_color = RED
@@ -19,7 +19,7 @@ class SphereManifold(ThreeDScene):
             u_range = (0,TAU),
             v_range = (0,TAU/2),
             resolution= res,
-            fill_opacity=0
+            fill_opacity=0.15
         )
 
         planeL = Surface(
@@ -43,7 +43,7 @@ class SphereManifold(ThreeDScene):
         hemisphereR = Surface(
             lambda u, v: np.array([np.cos(u)*np.sin(v), np.sin(u)*np.sin(v), -np.cos(v)]),
             u_range = (0,TAU),
-            v_range = (0,TAU/2.5),
+            v_range = (0,TAU/3.5),
             resolution= res,
             fill_opacity=0.35,
             fill_color = PURPLE
@@ -54,7 +54,7 @@ class SphereManifold(ThreeDScene):
             u_range = (0,TAU),
             v_range = (0,TAU/2),
             resolution= res,
-            fill_opacity=0
+            fill_opacity=0.15
         )
 
         sphere = Surface(
@@ -66,8 +66,9 @@ class SphereManifold(ThreeDScene):
             fill_color = GREEN
         ) 
 
-        self.set_camera_orientation(phi=65*DEGREES, theta=0, gamma=90*DEGREES, zoom=1)
+        self.set_camera_orientation(phi=65*DEGREES, theta=0*DEGREES, gamma=90*DEGREES, zoom=1.75)
         # self.add(planeR, hemisphereR, sphere)
+
         self.add(sphere)
         self.play(Write(planeR), Write(planeL))
         self.play(ReplacementTransform(planeR, hemisphereR), ReplacementTransform(planeL, hemisphereL))
