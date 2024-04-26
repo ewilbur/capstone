@@ -410,7 +410,28 @@
 	\\
 	We've seen some hints how we are going to go about constructing the tangent space from examples 1.8 and 1.9 from the previous section. The key idea is to leverage what we know about the tangent spaces of paths on manifolds to construct the tangent space at a point.\\
 	\\
-	We be
+	We already were introduced to paths, derivatives of paths, and smooth paths in definitions 1.11, 1.12, and 1.13. These work as definitions, but they don't exactly tell us how to go about \textit{computing} these derivatives. Here we will realize how.
+	\\
+	\begin{example}
+		TODO: Some path through 3D space. Ideally, we want to see a particle traveling through space with a trail behind it, like a comet. There should be an arrow from the origin pointing to the particle indicating that it is parametrized. In the description of this example, there should be a mention of the parametrization of the curve.
+	\end{example}
+	We see here an example of a parametrization of a path. You can see how we can plug in a variable from $[0, 1]$ and we will output a vector which points to the position on the curve. The parametrization of the path reifies the abstract notion of a path into one where we can actually work with and compute. With the parametrization of a path in hand, we can compute the derivative simply by computing the derivative of each component of the path. 
+	\\
+	\begin{example}
+		Same path as in previous example (Example 2.3). This time, however, should include the unit tangent vector at every point of the trajectory. In the description, include the derivative of the path in equation form
+	\end{example}
+	The parametrization as well as its derivative allows us to express the idea of a tangent space using just the equations of the path. Let $\alpha$ be a path and let $\alpha'$ be the derivative of the path. At some point $t_0 \in [0,1]$, $\alpha(t)$ describes a position along the path while $\alpha'(t)$ gives the tangent direction of the path. With this, we are able to construct a one dimensional vector space $T$ at $\alpha(t_0)$ by
+	$$
+		T = \alpha(t_0) + \lambda\alpha'(t_0) \hspace{1cm} \lambda \in \RR.
+	$$
+	\begin{example}
+		Same path as previous 2 examples. This time, we are only looking at a single point along the curve. The animation should show a tangent vector scaling different amounts at some arbitrary point.
+	\end{example}
+	You can see illustrated in the example how we can attach a vector space at a point on the path. Doing this for every point along the path gives us the tangent space of the path.\\
+	\\
+	
+	
+	
 	\subsection*{The Pushforward Map}
 	
 	\subsection*{The Riemannian Metric}
