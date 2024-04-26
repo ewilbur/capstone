@@ -5,11 +5,11 @@
 
 \setlength{\parindent}{0pt}
 
-%\usepackage{geometry}
-%\geometry{
-%	left=2cm,
-%	right=2cm,
-%}
+\usepackage{geometry}
+\geometry{
+	left=2cm,
+	right=2cm,
+}
 
 
 % Package used for creating hyperlinks
@@ -101,20 +101,28 @@
 %\newcommand{\showfigure}{show figs}
 
 \newenvironment{displayfigure}[1][]
-	{%
-		\ifthenelse{\isundefined{\showfigure}}%
-		{\expandafter\comment}%
-		{\begin{figure}[#1]}%
+{%
+	\ifthenelse{\isundefined{\showfigure}}%
+	{\expandafter\comment}%
+	{\begin{figure}[#1]}%
 	}%
 	{%
 		\ifthenelse{\isundefined{\showfigure}}%
-			{\expandafter\endcomment}%
-			{\end{figure}}%
-	}%
+		{\expandafter\endcomment}%
+		{\end{figure}}%
+}%
 
 %opening
 \title{A Visual Introduction to Curvature}
 \author{Evan Curry Wilbur}
+
+
+
+
+%
+% THE FOLLOWING ANIMATIONS HAVE BEEN CREATED, BUT NOT ADDED TO DOCUMENT
+%     - SphereTangent   
+
 
 \begin{document}
 	\maketitle
@@ -367,17 +375,46 @@
 	
 	\newpage
 	\section{The Measure of a Manifold}
-	Up to this point, we have really only been developing the preliminary topology and definitions necessary for any coherent discussion of curvature. We have done little in the way of discussing the core focus of this paper \textit{curvature.} That changes now. In this section and those that follow, we will finally utilize our new language and tools from calculus and linear algebra to discuss the nature of curvature. To do this, we will first construct the \textit{tangent space} to a surface. This idea is fundamental to the rest of the paper, so many examples and visuals will be given to aid the reader's understanding of it. However, the rigorous construction of the tangent space will be left to those who wish to take a course in differential geometry. The purpose here is to give the intuition and insight to this concept. Once done, we will introduce the notion of a metric on a space. For those familiar with analysis, this notion of a metric is different from that learned when studying metric spaces, however they are very related.  
+	So far, it seems that every time we introduce a concept to help us understand curvature, the rug gets pulled and it turns out that what we've been studying wasn't \textit{quite} enough to speak on the nature of curvature. First, the notions of charts were discussed and studied. However, it was pointed out that charts alone weren't enough to discuss many surfaces that we would otherwise wish to. To remedy this, we bundled and stitched charts together to create manifolds. We then saw how the definition of a manifold was actually too broad to have a coherent discussion on curvature. It allowed for manifolds with sharp curves or edges, which we pointed out were not the curvature we are interested in studying. So we refined the definition of the manifold to one more suitable to a discussion of curvature: smooth manifolds. Exasperation would not be an unreasonable emotion for a reader at this point. Thankfully, it turns out that smooth manifolds are sufficient for our purpose of understanding curvature.\\
+	\\
+	This section will be dedicated to developing tools to let us better understand smooth manifolds. We will start with defining the tangent space to a manifold. This idea is central to a proper understanding of smooth manifolds as it allows us to extend ideas from single variable calculus to any smooth manifolds. This will let us utilize the tools and concepts that calculus provides us to better understand curvature.\\
+	\\
+	We will explore more deeply the connection between the tangent space of a manifold and the underlying charts which define it through the concept of the pushforward, or differential, map. With this, we can compare directions on the charts for a manifold to the manifold itself by ``pushing them forward''. \\
+	\\
+	Once we have defined the tangent space to a manifold and see how it compares to the tangent space of the underlying charts, we will realize that it is nothing more than a vector space attached to each point on a smooth manifold. Because of this, we can utilize concepts from linear algebra, like inner product spaces, to better understand the structure of manifolds.
 	
 	\subsection*{The Tangent Space}
-	You, the budding mathematician eager to apply these new ideas involving manifolds have decided to take it upon yourself to study a number of manifolds. You grab a trusty atlas so you can navigate around it successfully. As you walk along the manifold, using the atlas to keep track of where you are at, you feel excitement as you explore this newfound world of manifolds. Keen to learn more, you make observations. You note that 
+	In introductory calculus, we learn about derivatives, tangent lines, and their applications and interpretations. The derivative, we saw, gave us a function's instantaneous rate of change. Tangent lines were special lines which lie tangent to a graph at a given moment and serve as the best linear approximation for a function at that point. When we took the derivative \textit{of the derivative} of a function, we were able to see how quickly the function diverges from the tangent line. This idea will be essential later when we finally and properly study curvature. Before we do that, however, we will need to extend these ideas from introductory calculus more generally to manifolds. The tangent space of a manifold is the first step in doing this.\\
+	\\
+	Much like how the tangent line to a graph gave us a linear approximation of the graph at a given point, so too does the tangent space of a manifold give us a linear approximation to the manifold at a given point. In fact, we will see that the tangent space is simply a generalization of concept of a tangent line we've already seen.\\
+	\\
+	We can think of the graph of a real-valued function as a one dimensional manifold. It we were to attach at each point of the graph the tangent line at that point, we would begin to have something that looks like the tangent space of the graph.
+	\begin{example}
+		TODO: 2D graph of a function where we attach a tangent line at intervals. 
+	\end{example}
+	Similarly to the one dimensional example, we can extend this idea to that of two dimensions. However, instead of tangent lines we instead consider tangent planes.
+	\begin{example}
+		\text{ }
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay,width=\textwidth]{30}{media/animations/sphere-tangent/sphere-tangent/frame-}{1}{150}
+		\end{displayfigure}
+	\end{example}
+	Here we see the tangent plane to a sphere taken at various points. The plane always lies tangent to the sphere, and so serves as a linear approximation to the sphere at any given point. This idea generalizes to any smooth manifold. In fact, the primary motivation for requiring our manifolds to be smooth was so we can have a well defined tangent space at every point of the manifold. As the manifold increases in dimension, so too does the dimension of the tangent space at a point.\\
+	\\
+	It might be tempting to define the tangent space as simply the manifold along with all the tangent spaces attached at each point. This isn't too far off from the actual definition. However, it turns out to be more effective to define it as a linear subspace at each point. In other words, rather than attaching planes and lines to the manifold at every point, we instead attach a vector space at every point.\\
+	\\
+	It should be clear to anyone who has taken linear algebra why this would be more useful. Lines and planes are simple geometric objects. However, each of these geometric objects have implicitly a vector space which spans them, and using vector spaces allows us to tap into the powerful tools in linear algebra.\\
+	\\
+	This begs the question: how exactly do we define a vector space at every point of the manifold. Intuitively, we know what needs to be done. However, using only the charts we have which define our manifold, it's not immediately obvious how we should go about constructing this. There are actually many ways to do this rigorously. We will show one here which uses the tangent space of paths to build a tangent space to a point, but we will avoid the rigor in lieu of building the intuition first. For the reader who wants a more detailed, thorough, and rigorous construction of the tangent space, John Lee's Introduction to Smooth Manifolds is a fantastic resource.\\
+	\\
+	We've seen some hints how we are going to go about constructing the tangent space from examples 1.8 and 1.9 from the previous section. The key idea is to leverage what we know about the tangent spaces of paths on manifolds to construct the tangent space at a point.\\
+	\\
+	We be
+	\subsection*{The Pushforward Map}
 	
-	\subsection*{The Euclidean Metric}
 	\subsection*{The Riemannian Metric}
 	
-%	\section{Connections}
-%	\subsection*{Vector Fields}
-%	\subsection*{Geodesics}
 	
 	
 	
