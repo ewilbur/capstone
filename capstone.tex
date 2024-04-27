@@ -417,10 +417,10 @@
 	\\
 	We already were introduced to paths, derivatives of paths, and smooth paths in definitions 1.11, 1.12, and 1.13. These work as definitions, but they don't exactly tell us how to go about \textit{computing} these derivatives. Here we will realize how.
 	\begin{example}
-		The graph of the function
+		The graph of the function $f:[0,1]\to \RR^3$
 		$$
 			f = \begin{pmatrix}
-				\sin(t)\\\cos(t)\\\cos(2t)
+				\sin(2t\pi)\\\cos(2t\pi)\\\cos(4t\pi)
 			\end{pmatrix}
 		$$
 		\begin{displayfigure}[h]
@@ -435,12 +435,12 @@
 	We see here an example of a parametrization of a path. You can see how we can plug in a variable from $[0, 1]$ and we will output a vector which points to the position on the curve. The parametrization of the path reifies the abstract notion of a path into one where we can actually work with and compute. With the parametrization of a path in hand, we can compute the derivative simply by computing the derivative of each component of the path. 
 	\\
 	\begin{example}
-		The graph of the function and its derivative
+		The graph of the function $f : [0,1] \to \RR^3$ from Example 2.3 and its derivative
 		\begin{align*}
 			f = \begin{pmatrix}
-				\sin(t)\\\cos(t)\\\cos(2t)
+				\sin(2t\pi)\\\cos(2t\pi)\\\cos(4t\pi)
 			\end{pmatrix} && f' = \begin{pmatrix}
-				\cos(t) \\ -\sin(t)\\-2\sin(2t)
+				2\pi\cos(2t\pi) \\ -2\pi\sin(2t\pi)\\-4\pi\sin(4t\pi)
 			\end{pmatrix}
 		\end{align*}
 		
@@ -457,13 +457,39 @@
 	$$
 		T = \alpha(t_0) + \lambda\alpha'(t_0) \hspace{1cm} \lambda \in \RR.
 	$$
+	
+	
+	\newpage
 	\begin{example}
-		Same path as previous 2 examples. This time, we are only looking at a single point along the curve. The animation should show a tangent vector scaling different amounts at some arbitrary point.
+		The graph of the function $f$ from Example 2.3 along with the tangent space at $t = \frac{1}{8}$ as we vary the scalar $\lambda \in \RR$
+		\begin{align*}
+			f\left(\frac{1}{8}\right) = \begin{pmatrix}
+				\sin\left(\frac{\pi}{4}\right)\\\cos\left(\frac{\pi}{4}\right)\\\cos\frac{\pi}{2}
+			\end{pmatrix} && f' = \begin{pmatrix}
+				\cos(2t\pi) \\ -\sin(t\pi)\\-2\sin(2t\pi)
+			\end{pmatrix}
+		\end{align*}
+		\begin{displayfigure}[h]
+			\begin{minipage}{0.35\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=1.5\textwidth]{45}{media/animations/particle-path-tangent-space/particle-path-tangent-space/frame-}{1}{90}
+			\end{minipage}	
+			\begin{minipage}{0.6\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{45}{media/animations/particle-path-tangent-space/particle-path-tangent-space-tex/frame-}{1}{90}
+			\end{minipage}
+		\end{displayfigure}
 	\end{example}
 	You can see illustrated in the example how we can attach a vector space at a point on the path. Doing this for every point along the path gives us the tangent space of the path.\\
 	\\
-	MORE TO DO
+	By taking the derivative of a smooth path, we've seen how we can construct a vector space for every point of the path. When taken in aggregate, the vector spaces become of the tangent space to the path, when we view the path as a manifold. We have the power now to construct the tangent space for every one dimensional smooth manifolds. This is all well and good. However, many interesting manifolds exist in higher dimensions and we've only seen how to construct a tangent space to one dimensional manifolds.\\
+	\\
+	One of mathematics' greatest strengths is its ability to generalize concepts to those not imagined previously. We will tap into that strength right now and extend the concept of a tangent space to manifolds of higher dimensions. To do this, we will build up the tangent space to a point on the manifold by considering \textit{multiple paths} through that point. When taken in aggregate, the paths will create a vector space, or tangent space, to the manifold at a point.\\
+	\\
+	Suppose we have an $n$-dimensional manifold $M$. We wish to build the tangent space on $M$ at a point $p \in M$. As a matter of notation, we will refer to this tangent space as $T_pM$. Since $p$ is a point on the manifold, there exists a chart $(U, \phi)$ and a point $u \in U$ such that $\phi(u) = p$. Consider now a smooth path $f : [0,1] \to U$ such that $f(t_0) = u$ for some $t_0 \in (0,1)$. We've seen already that the derivative of $f$ gives us the tangent direction of the path at a point. So then $f'(t_0)$ is the direction of $f$ through the point $u$. By using the map $\phi$ we can carry this path over to $M$. That is, the composition $\phi \circ f \subseteq M$ is just a path in $M$. But we know exactly how to compute derivatives of paths. So by computing the derivative of $\phi \circ f$ at $t_0$ gives us a tangent direction to the point $p$ on the manifold! We are able to do this for any smooth path passing through the point $u \in U$. By considering all paths through the point $u$ and considering the tangent vectors we find after the composition $\phi \circ f$, we build $T_pM$.
+	\begin{example}
+		Show a picture of a chart and a manifold. Show multiple paths through a point on the chart corresponding to a point on the manifold and show how these construct the tangent space.
+	\end{example}
 	
+	Thus, the tangent space to a point can be thought of as the set of all paths going through a point on the chart. Doing this for every point on the manifold gives us the total tangent space to the manifold, regardless of the dimension.
 	
 	\subsection*{The Pushforward Map}
 	We now have this additional structure attached to every point of a smooth manifold which we call the tangent space. As we saw, the tangent space contains information about how the manifold changes at a given point. In other words, it provides the best linear approximation of a manifold at a point. We will now explore the connection between the tangent space of a manifold and the underlying charts used to define the manifold via the pushforward map. \\
