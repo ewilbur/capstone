@@ -486,38 +486,41 @@
 	\\
 	Suppose we have an $n$-dimensional manifold $M$. We wish to build the tangent space on $M$ at a point $p \in M$. As a matter of notation, we will refer to this tangent space as $T_pM$. Since $p$ is a point on the manifold, there exists a chart $(U, \phi)$ and a point $u \in U$ such that $\phi(u) = p$. Consider now a smooth path $f : [0,1] \to U$ such that $f(t_0) = u$ for some $t_0 \in (0,1)$. We've seen already that the derivative of $f$ gives us the tangent direction of the path at a point. So then $f'(t_0)$ is the direction of $f$ through the point $u$. By using the map $\phi$ we can carry this path over to $M$. That is, the composition $\phi \circ f \subseteq M$ is just a path in $M$. But we know exactly how to compute derivatives of paths. So by computing the derivative of $\phi \circ f$ at $t_0$ gives us a tangent direction to the point $p$ on the manifold! We are able to do this for any smooth path passing through the point $u \in U$. By considering all paths through the point $u$ and considering the tangent vectors we find after the composition $\phi \circ f$, we build $T_pM$.
 	\begin{example}
-		Show a picture of a chart and a manifold. Show multiple paths through a point on the chart corresponding to a point on the manifold and show how these construct the tangent space.
+		Taking multiple paths on a chart through a point allows us to construct the tangent plane to the torus
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.25\textwidth]{torus-tangent/torus-tangent.png}
+		\end{displayfigure}
 	\end{example}
 	
 	Thus, the tangent space to a point can be thought of as the set of all paths going through a point on the chart. Doing this for every point on the manifold gives us the total tangent space to the manifold, regardless of the dimension.
 	
-	\subsection*{The Pushforward Map}
-	We now have this additional structure attached to every point of a smooth manifold which we call the tangent space. As we saw, the tangent space contains information about how the manifold changes at a given point. In other words, it provides the best linear approximation of a manifold at a point. We will now explore the connection between the tangent space of a manifold and the underlying charts used to define the manifold via the pushforward map. \\
+	\subsection*{The Differential Map}
+	We saw in the previous part that we were able to construct the tangent space to a point on a manifold by considering paths on a chart. We took the paths going through a point on a chart and considered the corresponding path on the manifold. We then \textit{defined} the tangent space to a manifold at a point as the collection of these paths.\\
 	\\
-	Recalling our analogy for a chart as a map or GPS coordinates for a manifold, we can think of a pushforward map as a way of translating directions on the chart to directions on the manifold. That is, if we position ourselves somewhere on a chart describing a region of a manifold, we may draw vectors indicating directions we may travel on the chart. These directions correspond to directions on the tangent space of the manifold. In a way, the pushforward lets us translate directions on our chart to directions on our manifold. Thus, we can consider the pushforward as a map between the tangent space of a chart to the tangent space of a manifold.
+	It should come as no surprise that the collection of these paths actually forms a vector space. The proof of this will not be given in this paper. The differential map, therefore, is a linear map from the tangent space of a point on a chart, to the corresponding tangent space on the manifold. With this map, we no longer have to view the tangent space of the manifold as a collection of paths, and instead as simple a traditional vector space.\\
+	\\
+	Recall from 
 	
-	\subsection*{The Riemannian Metric}
-	With the tangent space and the pushforward map, we have a way of understanding directions on the manifold by considering directions on a chart. As already mentioned, the tangent space of a manifold at a point is simply a vector space. Thus it would make sense to tap into our knowledge 
 	
+	\subsection*{Riemannian Metric}
+	On a manifold $M$, we've seen how we can construct a vector space at each point on $M$ by considering the set of paths. The differential map allows us to view these sets of paths as a vector space. This vector space we interpret as the set of all directions which lie tangent to $M$. We are now squarely within the realm of linear algebra, and so may utilize concepts from it to expand our repertoire of tools.\\
+	\\
+	In any beginner linear algebra course, the dot product and the theory of inner product spaces is taught.  
+	
+
 	
 	
 	\newpage
 	\section{Curvature}
 	Our theory is developed enough to finally begin exploring the main topic of this paper: curvature. In much the same way we built up a theory of manifolds starting from the basic charts, building all the way up to smooth manifolds, we develop our theory of curvature by studying how simple manifolds curve. We will then generalize these ideas to more complicated manifolds to broaden our theory. 
 	
-	\subsection*{One Dimensional Curvature}
-	If we have any hope in understanding curvature in a general sense, we should start by studying curvature on simple manifolds and generalize the idea to more complicated ones. Naturally, a question to have would be \textit{what is a simple manifold?} For our study, the simplest manifolds we can work with are one dimensional manifolds. Recall from the definition that a manifold is something that ``looks'' locally Euclidean. Most of the examples we've seen so far have been two dimensional manifolds (surfaces), primarily because they provide the best insight for developing the intuition behind our theory as well as the most engaging visualizations for them. However, our discussion of curvature will begin with one dimensional manifolds. Conceptually, we think of these one dimensional manifolds as a path in space.
-	\begin{example}
-		Examples of curves and one dimensional manifolds. At least one of these examples needs to be a straight line and the other needs to be something curvy
-	\end{example}
-	As the phrase ``one dimensional manifolds'' can be quite a mouthful, we often refer to these objects as a ``path'' or ``curve''. 
-	\begin{definition}
-		A curve or path is a one dimensional manifold.
-	\end{definition}
-	In example 3.1, we saw some curves which appeared curvy, while others we decidedly straight. This notion of curvature seems intuitively obvious. So much so that even a small child will have no trouble categorizing which of the curves is curvy and which are not. However, just as we had an intuitive concept of what a surface was, but developed the theory of manifolds so we had a language and formalism to discuss them, we approach this concept with a little more rigor than simply our intuition.\\
-	\\
+	\subsection*{Curvature of Paths}
 	Imagine you are driving in a car along a straight highway at a constant speed. Our experience with the physical world tells us that you will not feel any force acting on you while driving. Eventually, you approach a curve. Without slowing down you take the turn. Suddenly, you feel a force towards the center of your turn. Your speed didn't change, but nonetheless a force was felt. After the turn, you continue driving straight ahead and resume not feeling any force on you. Thinking to yourself, you realize that as long as you maintain your speed, any force felt by you or the passengers would indicate a turn, or change of direction. Interestingly, even someone completely blindfolded, or not looking outside the car at all, could determine when they are turning and when they are not, simply by feeling the forces acting on them while inside the car. This is the key idea. Because a force is felt only when the car is turning, we can detect turns on our path by measuring the forces we feel along the path.\\
 	\\
 	Those familiar with Newton's laws know that the force of an object is given by the object's mass times it's acceleration. The acceleration of an object is the second derivative of the object's position. 
+	\subsection*{Geodesics}
+	\subsection*{Gaussian Curvature}
+	\subsection*{Sectional Curvature}
 	
 \end{document}
