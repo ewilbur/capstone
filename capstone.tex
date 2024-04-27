@@ -388,16 +388,21 @@
 	\\
 	Much like how the tangent line to a graph gave us a linear approximation of the graph at a given point, so too does the tangent space of a manifold give us a linear approximation to the manifold at a given point. In fact, we will see that the tangent space is simply a generalization of concept of a tangent line we've already seen.\\
 	\\
-	We can think of the graph of a real-valued function as a one dimensional manifold. It we were to attach at each point of the graph the tangent line at that point, we would begin to have something that looks like the tangent space of the graph.
+	We can think of the graph of a real-valued function as a one dimensional manifold. If we were to attach at each point of the graph the tangent line at that point, we would begin to have something that looks like the tangent space of the graph.
+	\newpage
 	\begin{example}
-		TODO: 2D graph of a function where we attach a tangent line at intervals. 
+		Attaching a tangent line to every point of a graph resembles the tangent space to the graph
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay,width=0.5\textwidth]{30}{media/animations/tangent-graph/tangent-graph/frame-}{1}{180}
+		\end{displayfigure}
 	\end{example}
 	Similarly to the one dimensional example, we can extend this idea to that of two dimensions. However, instead of tangent lines we instead consider tangent planes.
 	\begin{example}
 		\text{ }
 		\begin{displayfigure}[h]
 			\centering
-			\animategraphics[loop,autoresume,autopause,autoplay,width=\textwidth]{30}{media/animations/sphere-tangent/sphere-tangent/frame-}{1}{150}
+			\animategraphics[loop,autoresume,autopause,autoplay,width=0.50\textwidth]{30}{media/animations/sphere-tangent/sphere-tangent/frame-}{1}{150}
 		\end{displayfigure}
 	\end{example}
 	Here we see the tangent plane to a sphere taken at various points. The plane always lies tangent to the sphere, and so serves as a linear approximation to the sphere at any given point. This idea generalizes to any smooth manifold. In fact, the primary motivation for requiring our manifolds to be smooth was so we can have a well defined tangent space at every point of the manifold. As the manifold increases in dimension, so too does the dimension of the tangent space at a point.\\
@@ -411,14 +416,42 @@
 	We've seen some hints how we are going to go about constructing the tangent space from examples 1.8 and 1.9 from the previous section. The key idea is to leverage what we know about the tangent spaces of paths on manifolds to construct the tangent space at a point.\\
 	\\
 	We already were introduced to paths, derivatives of paths, and smooth paths in definitions 1.11, 1.12, and 1.13. These work as definitions, but they don't exactly tell us how to go about \textit{computing} these derivatives. Here we will realize how.
-	\\
 	\begin{example}
-		TODO: Some path through 3D space. Ideally, we want to see a particle traveling through space with a trail behind it, like a comet. There should be an arrow from the origin pointing to the particle indicating that it is parametrized. In the description of this example, there should be a mention of the parametrization of the curve.
+		The graph of the function
+		$$
+			f = \begin{pmatrix}
+				\sin(t)\\\cos(t)\\\cos(2t)
+			\end{pmatrix}
+		$$
+		\begin{displayfigure}[h]
+			\begin{minipage}{0.35\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=1.5\textwidth]{30}{media/animations/particle-path/particle-path/frame-}{1}{75}
+			\end{minipage}	
+			\begin{minipage}{0.6\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{30}{media/animations/particle-path/particle-path-tex/frame-}{1}{75}
+			\end{minipage}
+		\end{displayfigure}
 	\end{example}
 	We see here an example of a parametrization of a path. You can see how we can plug in a variable from $[0, 1]$ and we will output a vector which points to the position on the curve. The parametrization of the path reifies the abstract notion of a path into one where we can actually work with and compute. With the parametrization of a path in hand, we can compute the derivative simply by computing the derivative of each component of the path. 
 	\\
 	\begin{example}
-		Same path as in previous example (Example 2.3). This time, however, should include the unit tangent vector at every point of the trajectory. In the description, include the derivative of the path in equation form
+		The graph of the function and its derivative
+		\begin{align*}
+			f = \begin{pmatrix}
+				\sin(t)\\\cos(t)\\\cos(2t)
+			\end{pmatrix} && f' = \begin{pmatrix}
+				\cos(t) \\ -\sin(t)\\-2\sin(2t)
+			\end{pmatrix}
+		\end{align*}
+		
+		\begin{displayfigure}[h]
+			\begin{minipage}{0.35\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=1.5\textwidth]{30}{media/animations/particle-path-tangent/particle-path-tangent/frame-}{1}{75}
+			\end{minipage}	
+			\begin{minipage}{0.6\textwidth}
+				\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{30}{media/animations/particle-path-tangent/particle-path-tangent-tex/frame-}{1}{75}
+			\end{minipage}
+		\end{displayfigure}
 	\end{example}
 	The parametrization as well as its derivative allows us to express the idea of a tangent space using just the equations of the path. Let $\alpha$ be a path and let $\alpha'$ be the derivative of the path. At some point $t_0 \in [0,1]$, $\alpha(t)$ describes a position along the path while $\alpha'(t)$ gives the tangent direction of the path. With this, we are able to construct a one dimensional vector space $T$ at $\alpha(t_0)$ by
 	$$
