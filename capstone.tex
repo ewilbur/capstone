@@ -500,13 +500,27 @@
 	\\
 	It should come as no surprise that the collection of these paths actually forms a vector space. The proof of this will not be given in this paper. The differential map, therefore, is a linear map from the tangent space of a point on a chart, to the corresponding tangent space on the manifold. With this map, we no longer have to view the tangent space of the manifold as a collection of paths, and instead as simple a traditional vector space.\\
 	\\
-	Recall from 
+	Recall from the construction of the tangent space that we were able to map tangent vectors from a path on a chart to tangent vectors to a path on a manifold through the chart map. This map from the vector space at a point in a chart to the vector space at a point in the manifold is linear. Thus, we have a linear map from the tangent space of a chart to the tangent space of a manifold. We call this map the differential map.
+	\begin{definition}
+		Let $M$ be a manifold and $p \in M$. Let $(U, \phi)$ be a chart with $u \in U$ and $\phi(u) = p$. The linear map just described is called the differential map. It is represented as $d\phi\mid_u : T_uU \to T_pM$. It maps vectors in the tangent space in $U$ at $u$ to the tangent space in $M$ at $p$.
+	\end{definition}
 	
 	
 	\subsection*{Riemannian Metric}
 	On a manifold $M$, we've seen how we can construct a vector space at each point on $M$ by considering the set of paths. The differential map allows us to view these sets of paths as a vector space. This vector space we interpret as the set of all directions which lie tangent to $M$. We are now squarely within the realm of linear algebra, and so may utilize concepts from it to expand our repertoire of tools.\\
 	\\
-	In any beginner linear algebra course, the dot product and the theory of inner product spaces is taught.  
+	In any beginner linear algebra course, the dot product and the theory of inner product spaces is taught. We saw during these courses how the inner product could give us a way of measuring distances and angles in a vector space. That is, given vectors $v$ and $w$ in a vector space, we define
+	\begin{align*}
+		|v| = \sqrt{\<v,v\>} && \cos(\theta) = \frac{\<v,w\>}{|v||w|}.
+	\end{align*}
+	That is, the length of a vector is the square root of it's inner product with itself. The cosine of the angle between to vectors is the inner product scaled by the reciprocal of the product of their respective magnitudes.\\
+	\\
+	The tangent space to a manifold is a vector space. So we may put an inner product on it and have a way of determining lengths and distances on the manifold, at least locally. Going back to our analogy of charts as maps, putting an inner product space on the tangent space to a manifold is akin to putting a compass direction and a scale to compare lengths and angles on the charts to a manifold.\\
+	\\
+	However, unlike a traditional map we are used to seeing in the real world, we are under no obligation to use the exact same scale and compass for every point in the chart. In fact, we may define a specific inner product for every point on $M$. So long as this inner product varies continuously and smoothly (in the sense that points close together give outputs of their inner product close together as well). When done this way, we call the inner product a Riemannian metric.
+	\begin{definition}
+		A Riemannian metric at a point $p \in M$ is a function $g_p : T_pM \times T_pM \to \RR$. If it is defined smoothly and continuously for every point of $M$, then we call $g$ the Riemannian metric on $M$.
+	\end{definition}
 	
 
 	
