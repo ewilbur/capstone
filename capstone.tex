@@ -118,29 +118,27 @@
 
 
 
-
-%
-% THE FOLLOWING ANIMATIONS HAVE BEEN CREATED, BUT NOT ADDED TO DOCUMENT
-%     - SphereTangent   
-
-
 \begin{document}
 	\maketitle
 	\begin{abstract}
 		\indent
-		This paper seeks to cover what one would learn in a years long graduate course in Riemannian geometry in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. Much reliance will be given to the reader's understanding of inner product spaces, determinants, linear transformations, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right. As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful. However, a course in vector calculus is not required.
+		This paper seeks to cover the materials necessary prior to taking a course in Riemannian geometry as well as an exploratory look into the materials which would be covered in that class in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. We will assume the reader's understanding of inner product spaces, linear transformation, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right .As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful from a first year course in calculus is necessary. However, a course in vector calculus is not required.
 		\\
 		\\
 		\indent
 		By no means should this be seen as a full and rigorous exploration into the vast topic of Riemannian and differential geometry; many tomes have be written doing such a task. Instead, it will leverage visual intuition of the space we occupy to make broad and powerful statements about surfaces more generally. Of course, visual intuition is limited by the dimension we occupy, so many generalizations will be stated, without proof, with references to where one could find proofs.
 	\end{abstract}
 	
+	\section*{Introduction}
+	TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro 
+	
+	
 	\section{Making a Manifold}
-	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made in the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
+	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made on the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
 	\\
 	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a manifold in a way similar to how a spaceship would navigate through the solar system or how an ant would walk along a table. It will be clear, by how we define charts, that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
 	\\
-	To remedy this, we will ``stitch together'' different charts to create a manifold, the central object of discussion for the remainder of the paper. Once some examples of manifolds have been given, we will begin discussing idea of smoothness and differentiability on a manifolds.
+	To remedy this, we will ``stitch together'' different charts to create a manifold, the central object of discussion for the remainder of the paper. Once some examples of manifolds have been given, we will begin discussing ideas of smoothness and differentiability on a manifolds.
 	\subsection*{Charts}
 	At its most distilled, a chart is a map of some space around a point. Anyone who has picked up a map, used a GPS, or fantasized being a navigator in Star Trek is already familiar with the idea of charts. The chart is not the object of study in and of itself, much in the same way a map is not the area it seeks to represent. Rather, with a chart in hand we may point to a position on it, and we shall get a corresponding point on the surface we are studying. The animation below gives an intuition of how a chart can map out part of the surface $z = \sin(x + y)$.
 	\begin{displayfigure}[h]
@@ -148,12 +146,12 @@
 		\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{20}{media/animations/chart1/chart/frame-}{16}{110}
 	\end{displayfigure}
 	\\
-	From the animation, we can start to make some observations and develop an intuition for what charts do. First, they make the curvy space appear flat. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to the other path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
+	From the animation, we can start to make some observations and develop an intuition for what charts do. First, the curved space appears flat in the chart. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to the other path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
 	\begin{definition}
 		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$.
 	\end{definition}
 	\noindent
-	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}, which will be done shortly. Before that, however, a quick disclaimer. The definitions for these terms will not be the same as one is likely to find in a topology course. They are deliberately tailored and narrowed to fit the scope of this paper. While the definitions will surly differ from a proper topology course, within the scope of the paper they will be equivalent. 
+	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}, which will be done shortly. Before that, however, a quick disclaimer. The definitions for these terms will not be the same as one is likely to find in a topology course. They are deliberately tailored and narrowed to fit the scope of this paper. While the definitions will surely differ from a proper topology course, within the scope of the paper they will be equivalent. 
 	\begin{definition}
 		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_p(\varepsilon) = \{x : x \in \RR^n, |x - p| < \varepsilon\}$. When $p$ is omitted from the expression, it is assumed to be centered at the origin.
 	\end{definition}
@@ -170,7 +168,7 @@
 			\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{20}{media/animations/open-ball/open-ball/frame-}{1}{90}
 		\end{displayfigure}
 		\\
-		The dashed line indicates that we are concerned with all the points up to the boundary. Notice as we move the dot around the ball, we may always shrink the red circle so that it lies entirely inside the ball.
+		The dashed line indicates that the boundary is removed. Notice as we move the dot around the ball, we may always shrink the red circle so that it lies entirely inside the ball.
 	\end{example}
 	\begin{example}
 		The closed ball of radius 1 $\bar{B} = \{x : x \in \RR^2, |x| \leq 1\}$ is not open.
@@ -466,7 +464,7 @@
 			f\left(\frac{1}{8}\right) = \begin{pmatrix}
 				\sin\left(\frac{\pi}{4}\right)\\\cos\left(\frac{\pi}{4}\right)\\\cos\frac{\pi}{2}
 			\end{pmatrix} && f' = \begin{pmatrix}
-				\cos(2t\pi) \\ -\sin(t\pi)\\-2\sin(2t\pi)
+				2\pi\cos(2t\pi) \\ -2\pi\sin(t2\pi)\\-4\pi\sin(2t\pi)
 			\end{pmatrix}
 		\end{align*}
 		\begin{displayfigure}[h]
@@ -530,11 +528,106 @@
 	Our theory is developed enough to finally begin exploring the main topic of this paper: curvature. In much the same way we built up a theory of manifolds starting from the basic charts, building all the way up to smooth manifolds, we develop our theory of curvature by studying how simple manifolds curve. We will then generalize these ideas to more complicated manifolds to broaden our theory. 
 	
 	\subsection*{Curvature of Paths}
-	Imagine you are driving in a car along a straight highway at a constant speed. Our experience with the physical world tells us that you will not feel any force acting on you while driving. Eventually, you approach a curve. Without slowing down you take the turn. Suddenly, you feel a force towards the center of your turn. Your speed didn't change, but nonetheless a force was felt. After the turn, you continue driving straight ahead and resume not feeling any force on you. Thinking to yourself, you realize that as long as you maintain your speed, any force felt by you or the passengers would indicate a turn, or change of direction. Interestingly, even someone completely blindfolded, or not looking outside the car at all, could determine when they are turning and when they are not, simply by feeling the forces acting on them while inside the car. This is the key idea. Because a force is felt only when the car is turning, we can detect turns on our path by measuring the forces we feel along the path.\\
+	Imagine you are driving in a car along a straight highway at a constant speed. Our experience with the physical world tells us that you will not feel any force acting on you while driving. Eventually, you approach a curve. Without slowing down you take the turn. Suddenly, you feel a force towards the center of your turn. Your speed didn't change, but nonetheless a force was felt. After the turn, you continue driving straight ahead and resume not feeling any force on you. Thinking to yourself, you realize that, as long as you maintain your speed, any force felt by you or the passengers would indicate a turn, or change of direction. Interestingly, even someone completely blindfolded, or not looking outside the car at all, could determine when they are turning and when they are not, simply by feeling the forces acting on them while inside the car. This is the key idea. Provided that the speed of the car is maintained, a force is felt only when the car is turning. Hence, we can detect turns on our path by measuring the forces we feel along the path.\\
 	\\
-	Those familiar with Newton's laws know that the force of an object is given by the object's mass times it's acceleration. The acceleration of an object is the second derivative of the object's position. 
-	\subsection*{Geodesics}
-	\subsection*{Gaussian Curvature}
-	\subsection*{Sectional Curvature}
+	Those familiar with Newton's laws know that the force of an object is given by the object's mass times it's acceleration. The acceleration of an object is the second derivative of the object's position. Thus, simply by taking the second derivative along the path, we can compute the acceleration for any point along a path. With some additional caveats which will be mentioned shortly, whenever the second derivative along a path is nonzero, we will say that the path is curving at that point. The direction of curvature will be the direction of the second derivative.\\
+	\\
+	It is critical that the speed traveled along the path remains constant. If you are traveling along a straight road with no turns, it is possible to still feel a force while you are driving even if there are no turns by hitting the breaks or gas. Thus, in order for this test to accurately detect curves along a path, we \textit{require} that we are traveling at a constant speed along the path.\\
+	\\
+	Many paths defined parametrically (like the examples in section 2) are not traveling at a constant speed. In other words, the magnitude of the tangent vector varies as we travel along the curve.
+	\begin{example}
+		Consider the path $f : [0,1] \to \RR$
+		$$
+			f = \begin{pmatrix}
+				\sin(2t\pi)\\
+				\cos(2t\pi)\\
+				\cos(4t\pi)
+			\end{pmatrix}
+		$$
+		from the examples in section 2. The derivative of this path is
+		$$
+			f' = \begin{pmatrix}
+				2\pi\cos(2t\pi)\\
+				-2\pi\sin(2t\pi)\\
+				-4\pi\sin(4t\pi)
+			\end{pmatrix}.
+		$$
+		We can compute the magnitude of the tangent vector at any point using the normal Euclidean definition
+		\begin{align*}
+			|f'| &= \sqrt{\<f',f'\>}\\
+			&= \sqrt{4\pi^2\cos^2\left(2t\pi\right) + 4\pi^2\sin^2\left(2t\pi\right) + 16\pi^2\sin^2(4t\pi)}\\
+			&= \sqrt{4\pi^2 + 16\pi^2\sin^2\left(4t\pi\right)}\\
+			&= 2\pi\sqrt{1 + 4\sin^2(4t\pi)}
+		\end{align*}
+		which is obviously not constant. Thus, it is not sufficient to show that the second derivative of this path is nonzero in order to demonstrate that the path curves. 
+	\end{example}
+	Those readers who are savvy with their linear algebra might be tempted to simply divide $f'$ by its magnitude. The reasoning being that this will always scale the vector $f'$ so that its magnitude is always equal to 1. From there, it's a simple matter of computing the derivative of this scaled tangent vector, $\frac{f'}{|f'|}$. This is completely correct and valid reasoning provided that $|f'| \neq 0$. In order to show this rigorously, however, it is required that some existence and uniqueness theorems of differential equations be used, concepts outside the scope of this paper. Suffice to say that whenever we have a path, we can always ``scale'' the speed we travel along the path so that we are always traveling at a constant speed. 
+	\begin{definition}
+		A path $f$ has constant speed whenever $|f'| = c$ for some constant $c$. If $c = 1$ then $f$ is said to have unit speed. 
+	\end{definition}
+	In light of the previous discussion, all paths whose derivatives do not vanish may be converted to an identical path that is of constant speed.\\
+	\\
+	We are now in a position to give a definition of curvature. 
+	\begin{definition}
+		A constant speed path $f$ is said to \textit{curve} at a point $t_0 \in (0,1)$ if $f''(t_0) \neq 0$. The direction of $f''$ is called the \textit{normal} direction of the curve.
+	\end{definition}
+	\begin{example}
+		A 2D path showing just the acceleration of the path at every point
+	\end{example}
+	\begin{example}
+		A 3D path showing the acceleration
+	\end{example}
+	These two examples illustrate some facts about the curvature of paths. We can see how the tighter the curve, the greater the normal vector. So the magnitude of the normal vector gives us information on ``how curvy'' a curve is.
 	
+	\subsection*{Gaussian Curvature}
+	We now have a way to define curvature, at least for paths and one dimensional manifolds. We begin now with the generalization of this idea with the concept of Gaussian curvature for two dimensional manifolds, or surfaces.\\
+	\\
+	First, we shall define the normal vector to a surface. We think of the normal vector to a surface as a unit vector which is perpendicular to the surface. Expressed equivalently, the normal vector to a surface is orthogonal to the tangent space of the surface. For two dimensional surfaces embedded in three dimensions, the normal vector can be computed directly by taking the cross product of the tangent vectors of two paths passing through a point and then scaling the result so it has unit length. Astute readers may notice that this does not provide a well-defined vector, as it is possible that the vector computed may vary up to sign. For our purposes, however, this will not be an issue. So long as we are able to find a normal vector to a surface at a point, the following discussion does not change depending on which we choose. However, there are many results in differential geometry which require that we pick an orientation.\\
+	\\
+	We can imagine ourselves standing on a point on a surface. The tangent space gives us all the possible directions we may head from this point on the manifolds. For each direction, we consider a constant unit path on the surface through the point we are standing on whose derivative at the point we are on on the manifold is the direction in the tangent space. Each path has a well-defined normal curvature which we can compute just as we did in the previous subsection. We now pick a normal vector to the surface. For every path, we compute the inner product of the normal vector of the path with the normal vector of the surface. Results from topology guarantee that if we do this for every path, there will be at least two paths, $f_1$ and $f_2$ for which this inner product achieves a maximum and minimum respectively. The directions $f_1'$ and $f_2'$ are called the principle directions of curvature. The inner product with the surface normal is called the principle curvatures. If the surface normal is $s$, the normal vector to $f_1$ is $n_1$ and the normal vector to $f_2$ then $k_1 = \<s, n_1\>$ and $k_2 = \<s, n_2\>$ are called the principle curvatures. The Gaussian curvature at a point on the surface is then defined as $k_1k_2$.\\
+	\\
+	This definition may seem a bit mangled. So we will explain what is going on a bit more geometrically. For each direction we head on the surface, there is a unit path which has a normal vector indicating the curvature of the path. The surface normal $s$ serves as a yardstick of sorts. It is there to keep track of the direction of curvature relative to the surface. When the normal direction of the path points away from the surface normal, the value of $k$ will be negative as seen from taking the inner product. When the two coincide in direction, the inner product will be positive. If it happens that all the paths have normal curvature pointing either away from, or towards $s$, then either $k_1 < 0$ and $k_2 < 0$ or $k_1 > 0$ and $k_2 > 0$ so in either case, $k_1k_2 > 0$ as the Gaussian curvature at the point is positive. If, however, the surface curves towards $s$ for some paths and away from $s$ in another, then $k_1 > 0$ and $k_2 < 0$ or $k_1 < 0$ and $k_2 > 0$. In either case, $k_1k_2 < 0$ and the point is said to have negative Gaussian curvature. Finally, if one of the paths has no normal curvature, then either $k_1 = 0$ or $k_2 = 0$ and the point has zero Gaussian curvature.
+	\begin{example}
+		Positive Gaussian curvature example
+	\end{example}
+	\begin{example}
+		Negative Gaussian curvature example
+	\end{example}
+	\begin{example}
+		Zero Gaussian curvature example
+	\end{example}
+	
+	While it still might not seem immediately obvious why we care about Gaussian curvature, it turns out that Guass, who first discovered it, found that Gaussian curvature is intrinsic to the surface. What this means is that a manifold with, say, positive Gaussian curvature, can never be deformed smoothly in such a way so that the result has negative or zero Gaussian curvature. This is exactly why you can fold a pizza in half so that it doesn't bend when you eat it. The pizza exists on a flat plane, and folding it does not change its Gaussian curvature. It will not be able to further bend for that would require the pizza to have negative Gaussian curvature, which Gauss showed is not possible.
+	
+	\subsection*{Geodesics}
+	We've seen up to now how to find curvature of one and two dimensional manifolds through normal curvature for paths and Gaussian curvature for surfaces. In order to generalize further to manifolds of higher dimension, a brief discussion must be had on geodesics as they are essential for defining sectional curvature, the analog to Gaussian curvature for higher dimensional manifolds. A proper discussion of geodesics requires a study into differential equations as well as a more thorough examination of the topics we have covered so far. Thus, here we introduce the concept intuitively and geometrically, so that the main ideas can be understood for later sections.\\
+	\\
+	A geodesic of a manifold are paths on a manifold which curve only the amount they need to to stay on the manifold. Imagine a car which has the steering wheel locked so it may only travel straight. If we were to put this car on a flat plane, then the path it travels would be a straight line. If this car were to travel alone a sphere, it would travel along a great circle. Though the path the car traces out while traveling along the great circle on a sphere is curved, it is only curved as much as it needs to in order to stay on the sphere. This is how we should visualize geodesics of a surface.
+	\begin{example}
+		Geodesics of plane
+	\end{example}
+	\begin{example}
+		Show geodesics of sphere
+	\end{example}
+	\begin{example}
+		geodesic of cylinder
+	\end{example}
+		
+	It is an important fact that for every point on a smooth manifold, for every direction in the tangent space to that point, there exists a unique geodesic going that direction and passing through that point. Thus, no matter where we are on the manifold, we may pick a direction and be guaranteed that a geodesic passes through the point in that direction. In essence, going back to the analogy of the car, on every smooth manifold, no matter what direction we position our car with the steering wheel lock, it will always be able to drive, at least a short distance, in the path of a geodesic.
+	
+	\subsection*{Sectional Curvature}
+	We finish our discussion of curvature by generalizing what we have done to higher dimensions. So far our exploration into curvature has only taken us to one and two dimensional manifolds. Here we define a notion of curvature for all dimensions of manifolds, called the sectional curvature. This is the amalgamation of everything discussed up to this point.\\
+	\\
+	It is perhaps easiest to understand sectional curvature by explaining how one would compute it. Given a manifold $M$ and a point $p \in M$, we've seen that there is a tangent space $T_pM$ at the point $p$. This tangent space is a vector space, as we've seen. Thus, we can consider all the two dimensional linear subspaces $V \subseteq T_pM$. For each of these two dimensional subspaces, we consider all the geodesic paths emanating from $p$ in the directions of $V$. Taken together, this creates a two dimensional surface in the manifold.
+	\begin{example}
+		Animation showing a geodesic flowout and the resulting surface
+	\end{example}
+	As you can see, this is just a two dimensional surface. Thus, we can compute the Gaussian curvature of it. This is called the sectional curvature for the subspace $V$.\\
+	\\
+	The important thing to see here is that this can be extended for any higher dimensional manifold. Unlike previously where we were only able to discuss curvature of one and two dimensional manifolds, we've extended these notions to the point where the dimension no longer matters.
+%	\newpage
+%	\section{Conclusion}
+%	There is still much to be said about curvature and the beauty therein. Much was skipped from a traditional course in the topic and many famous and important results were not mentioned. In fact, there are even alternative ways of discussing curvature.\\
+%	\\
+%	If you are interested in learning more about this beautiful topic, the references at the end of this document are great resources to learn more about this.
 \end{document}
