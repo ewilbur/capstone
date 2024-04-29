@@ -169,7 +169,7 @@
 	\end{definition}
 	This definition, at first glance, might seem horribly abstract, and that's because it is. This definition is meant to encapsulate any conceivable notion of a ``space'', even those incomprehensible to the human mind. Not to mention that it seems that we need to understand what an open set is first before we can understand what a topological space is. Let us ignore for now what the definition of an open set it. For now, we will consider it simply a property that certain subsets of $M$ have. If we are comfortable with this, then the above definition is defining a very simple idea
 	\begin{enumerate}[1.]
-		\item A topological space consists of two sets: $M$ and a collection of subsets of $M$ called $\tau$
+		\item A topological space consists of two sets: $M$ and a collection of subsets of $M$ called the \textit{topology} on $M$
 		\item We call the elements of $\tau$ \textit{open sets}
 		\item For any collection of open sets of $\tau$, we know their union must also be in $\tau$
 		\item For any finite collection of open sets of $\tau$, their intersection must also be in $\tau$.
@@ -185,7 +185,7 @@
 	Let's take a step away from the abstraction and focus on a space we are already familiar with, $\RR^n$, Euclidean space. There are, in fact, many ways of defining open sets on $\RR^n$ so that it forms a topology. There are even many different ways of defining open sets on $\RR^n$ so that it produces \textit{the same topology} on $\RR^n$. We will show a common way of defining the standard topology on $\RR^n$ right now. This topology comports to our usual notion of space, closeness, and distance that we are used to seeing in out everyday lives. It will also be the assumed topology for the rest of this paper whenever we discuss $\RR^n$ and its open sets.
 	\\
 	\\
-	Recall that we think of open sets as \textit{defining} points which are close together. One way of expressing this mathematically (but certainly not the only way!) is to say a subset $U \subseteq \RR^n$ has points that are close together (i.e. $U$ is open) if, around every point $p \in U$ there is another set $V$ of points which are close together (i.e. $V$ is open), with $p \in V$ and such that $V \subset U$. Let's reify this idea.
+	Recall that we think of open sets as \textit{defining how} points are close together. One way of expressing this mathematically (but certainly not the only way!) is to say a subset $U \subseteq \RR^n$ has points that are close together (i.e. $U$ is open) if, around every point $p \in U$ there is another set $V$ of points which are close together (i.e. $V$ is open), with $p \in V$ and such that $V \subset U$. Let's reify this idea.
 	\begin{definition}
 		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_\epsilon(p) = \{x : x \in \RR^n, |x - p| < \epsilon\}$. When $p$ is omitted from the expression, it is assumed to be centered at the origin.
 	\end{definition}
