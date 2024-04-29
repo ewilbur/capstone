@@ -100,7 +100,7 @@
 \usepackage{ifthen}
 \usepackage{lipsum}
 
-%\newcommand{\showfigure}{show figs}
+\newcommand{\showfigure}{show figs}
 
 \newenvironment{displayfigure}[1][]
 {%
@@ -141,7 +141,11 @@
 	\\
 	The modern understanding of curvature is often traced back to Gauss and his work in developing the beginnings of differential geometry. He was tasked with producing a navigable map for ships to use at sea which preserved relative distances and angles. Gauss worked on the problem until he made a ``remarkable discovery'' which he called the Theorema Egregium, finding that no such map could possibly exist due to the curvature of the Earth and the lack of curvature of a flat map. This is seen as the start of a fruitful and beautiful subjects of differential and Riemmanian geometry.\\
 	\\
-	We begin by asking an intuitively obvious, but mathematically difficult question: \textit{what even is curvature?} We know from our daily experience what curvature is. The way a snake moves, the path a ball takes flying through the air, or the ripples of a pond a thrown pebble makes are all examples of this idea of curvature. Compare this to the jagged teeth of a saw blade, a zig-zag path, or even mathematical objects like triangles and squares. These seem decidedly less curvy than the previous examples. 
+	We begin by asking an intuitively obvious, but mathematically difficult question: \textit{what even is curvature?} We know from our daily experience what curvature is. The way a snake moves, the path a ball takes flying through the air, or the ripples of a pond a thrown pebble makes are all examples of this idea of curvature. Compare this to the jagged teeth of a saw blade, a zig-zag path, or even mathematical objects like triangles and squares. These seem decidedly less curvy than the previous examples. Intuitively, we understand the differences between these two. In the former there seems to be a smooth transition of paths, while the latter seems to have more abrupt and sudden changes. How exactly can we say this in a more mathematically precise way?\\
+	\\
+	We will start answering these questions by developing the theory of manifolds, abstractions of surfaces to higher dimensions. We will think of manifolds as being embedded in a canonically flat space we are familiar with, Euclidean space. We will impose certain structures on manifolds which we will see allow us to categorize what types of objects are curved, and what are flat or jagged. From there, additional work will go into understanding smoothness by constructing and studying the tangent space to a manifold. Finally, we get to the purpose of the paper and start to define and discuss curvature: first with one-dimensional manifolds, then to two, and finally to higher dimensions.\\
+	\\
+	Our goal is not to provide a rigorous exploration into these topics. A list of references will be given at the end of this paper for that. Instead, this will provide a visual intuition for these topics to assist the reader in their further studies of this topic. 
 	\newpage
 	\section{Making a Manifold}
 	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made on the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary to develop an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
