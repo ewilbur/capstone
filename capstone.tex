@@ -137,24 +137,28 @@
 	
 	\section*{Introduction}
 	TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro to study of curves and curvature. In must be mentioned that $\RR^2$ and Euclidean space more generally is flat. 
-	
+	\newpage
 	
 	\section{Making a Manifold}
-	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made on the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary in developing an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
+	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made on the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary to develop an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
 	\\
-	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a manifold in a way similar to how a spaceship would navigate through the solar system or how an ant would walk along a table. It will be clear, by how we define charts, that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
+	We will start the discussion by giving the definition for charts, which intuitively we will think of as a GPS system, or coordinates, allowing us to ``walk along'' a space in a way similar to how a spaceship would navigate through the solar system or how an ant would walk along a table. It will be clear by how we define charts that they are not suitable by themselves to encapsulate even all the surfaces we encounter in our everyday lives, much less those of higher dimensions. \\
 	\\
 	To remedy this, we will ``stitch together'' different charts to create a manifold, the central object of discussion for the remainder of the paper. Once some examples of manifolds have been given, we will begin discussing ideas of smoothness and differentiability on a manifolds.
 	\subsection*{Charts}
-	At its most distilled, a chart is a map of some space around a point. Anyone who has picked up a map, used a GPS, or fantasized being a navigator in Star Trek is already familiar with the idea of charts. The chart is not the object of study in and of itself, much in the same way a map is not the area it seeks to represent. Rather, with a chart in hand we may point to a position on it, and we shall get a corresponding point on the surface we are studying. The animation below gives an intuition of how a chart can map out part of the surface $z = \sin(x + y)$.
-	\begin{displayfigure}[h]
-		\centering
-		\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{20}{media/animations/chart1/chart/frame-}{16}{110}
-	\end{displayfigure}
-	\\
+	 Before we introduce the definition of a chart, we start with an animation demonstrating their purpose. The animation below gives an intuition of how a chart can map out part of the surface $z = \sin(x + y)$.
+	\begin{example}
+		\text{ }
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{20}{media/animations/chart1/chart/frame-}{16}{110}
+		\end{displayfigure}
+	\end{example}
+	At its most distilled, a chart is a map of some space around a point. Anyone who has picked up a map, used a GPS, or fantasized being a navigator in Star Trek is already familiar with the idea of charts. The chart is not the object of study in and of itself, much in the same way a map is not the area it seeks to represent. Rather, with a chart in hand we may point to a position on it, and we shall get a corresponding point on the surface we are studying.
+
 	From the animation, we can start to make some observations and develop an intuition for what charts do. First, the curved space appears flat in the chart. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to the other path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
 	\begin{definition}
-		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$.
+		A chart for a topological space $M$ is a pair $(U, \phi)$. The set $U \subseteq \RR^n$ is an open set of $\RR^n$. The function $\phi : U \to V \subseteq M$ is a homeomorphism.
 	\end{definition}
 	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}. \\
 	\\
@@ -167,7 +171,7 @@
 				\item For any finite collection $U_k \in \tau, \hspace*{5px}\cap^n_{k=0} U_k \in \tau$. That is, finite intersections of open sets are open.
 		\end{enumerate}
 	\end{definition}
-	This definition, at first glance, might seem horribly abstract, and that's because it is. This definition is meant to encapsulate any conceivable notion of a ``space'', even those incomprehensible to the human mind. Not to mention that it seems that we need to understand what an open set is first before we can understand what a topological space is. Let us ignore for now what the definition of an open set it. For now, we will consider it simply a property that certain subsets of $M$ have. If we are comfortable with this, then the above definition is defining a very simple idea
+	This definition, at first glance, might seem horribly abstract, and that's because it is. This definition is meant to encapsulate any conceivable notion of a ``space'', even those which are completely inconceivable. Not to mention that it seems that we need to understand what an open set is before we can understand what a topological space is. Let us ignore what the definition of an open set it. For now, we will consider it simply a property that certain subsets of $M$ have. If we are comfortable with this, then the above definition is defining a very simple idea
 	\begin{enumerate}[1.]
 		\item A topological space consists of two sets: $M$ and a collection of subsets of $M$ called the \textit{topology} on $M$
 		\item We call the elements of $\tau$ \textit{open sets}
@@ -180,9 +184,9 @@
 	\begin{definition}
 		Let $M$ and $N$ be topological spaces, a function $f : M \to N$ is continuous if for every open set $V \subseteq N$, the inverse image $f^{-1}(V) \subseteq M$ is an open set of $M$.
 	\end{definition} 
-	Most students first learn of continuity in high school, where they are taught that a function is continuous if the graph can be drawn without removing a pencil from the paper. That is, there are no gaps or leaps of the graph of a function. In calculus, continuity of a function is determined by whether the limit of a function to a point equals the function evaluated at that point, for every point. Both these definitions are saying, in their own respective contexts, that continuous functions are functions which send nearby points to nearby points. Definition 1.3 is no different. It is saying precisely that, only in the language of topology. Open sets, therefore, determine what it means for points to be ``nearby'' each other.\\
+	Most students first learn of continuity in high school, where they are taught that a function is continuous if the graph can be drawn without removing a pencil from the paper. That is, there are no gaps or leaps of the graph of a function. In calculus, continuity of a function is determined by whether the limit of a function at a point equals the function evaluated at that point, for every point. Both these definitions are saying, in their own respective contexts, that continuous functions are functions which send nearby points to nearby points. Definition 1.3 is no different. It is saying precisely that, only in the language of topology. Open sets, therefore, determine what it means for points to be ``nearby'' each other.\\
 	\\
-	Let's take a step away from the abstraction and focus on a space we are already familiar with, $\RR^n$, Euclidean space. There are, in fact, many ways of defining open sets on $\RR^n$ so that it forms a topology. There are even many different ways of defining open sets on $\RR^n$ so that it produces \textit{the same topology} on $\RR^n$. We will show a common way of defining the standard topology on $\RR^n$ right now. This topology comports to our usual notion of space, closeness, and distance that we are used to seeing in out everyday lives. It will also be the assumed topology for the rest of this paper whenever we discuss $\RR^n$ and its open sets.
+	Let's take a step away from the abstraction and focus on a space we are already familiar with, $\RR^n$, Euclidean space. There are, in fact, many ways of defining open sets on $\RR^n$ so that it forms a topology. There are even many different ways of defining open sets on $\RR^n$ so that it produces \textit{the same topology} on $\RR^n$. We will show a common way of defining the standard topology on $\RR^n$ right now. This topology comports to our usual notion of space, closeness, and distance that we are used to seeing in our everyday lives. It will also be the assumed topology for the rest of this paper whenever we discuss $\RR^n$ and its open sets.
 	\\
 	\\
 	Recall that we think of open sets as \textit{defining how} points are close together. One way of expressing this mathematically (but certainly not the only way!) is to say a subset $U \subseteq \RR^n$ has points that are close together (i.e. $U$ is open) if, around every point $p \in U$ there is another set $V$ of points which are close together (i.e. $V$ is open), with $p \in V$ and such that $V \subset U$. Let's reify this idea.
@@ -208,6 +212,8 @@
 			\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{15}{media/animations/closed-ball/closed-ball/frame-}{1}{30}
 		\end{displayfigure}
 	\end{example}
+	Unlike the open ball, $\bar{B}$ contains it's boundary. We see from the animation that it is impossible to surround a point on the boundary with an open ball in such a way so that it lies entirely within $\bar{B}$. Thus, $\bar{B}$ cannot be open.\\
+	\\
 	By considering the collection of all open sets $U$ as defined in Definition 1.5, we have built the standard topology on $\RR^n$. Check to see that this construction does indeed form a valid topology as defined in Definition 1.2. It is clear that around any point in $\RR^n$ and $\emptyset$ there is an open ball surrounding every point contained in $\RR^n$ and $\emptyset$ (the latter being vacuously true). Showing that this forms a topology, however, will be left as an exercise.\\
 	\\
 	Finally, we get to the last of the vocabulary to unpack, \textit{homeomorphism}. When we think of two objects being homeomorphic, then we may continuously transform one into the other without ripping, tearing, or gluing our shape, and then back again.\\
@@ -247,43 +253,40 @@
 	% TODO
 	% TODO Chart examples: high compile cost
 	% TODO
-	
+%	\newpage
+%	\begin{example}
+%%
+%		The following animations illustrate a variety of charts and the surfaces they correspond to. Observe how they are all able to be continuously deformed into a flat surface and then back again.
+%		\begin{displayfigure}[h]
+%			\begin{minipage}{0.5\textwidth}
+%				\centering
+%				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{60}{media/animations/helicoid/helicoid/frame-}{17}{300}
+%				\caption{Helicoid}
+%			\end{minipage}
+%			\begin{minipage}{0.5\textwidth}
+%				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/monkey-saddle/monkey-saddle/frame-}{1}{30}
+%				\caption{Monkey Saddle}
+%			\end{minipage}\\
+%			\begin{minipage}{0.5\textwidth}
+%				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/paraboloid/paraboloid/frame-}{1}{30}
+%				\caption{Paraboloid}
+%			\end{minipage}
+%			\begin{minipage}{0.5\textwidth}
+%				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hemisphere/hemisphere/frame-}{1}{30}
+%				\caption{Hemisphere}
+%			\end{minipage}
+%			\begin{minipage}{0.5\textwidth}
+%				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hyperbolic-paraboloid/hyperbolic-paraboloid/frame-}{1}{30}
+%				\caption{Hyperbolic Paraboloid}
+%			\end{minipage}
+%			\begin{minipage}{0.5\textwidth}
+%				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hyperboloid/hyperboloid/frame-}{1}{30}
+%				\caption{Hyperboloid}
+%			\end{minipage}
+%		\end{displayfigure}
+%	\end{example}
+		
 	\newpage
-	\begin{example}
-%
-		The following animations illustrate a variety of charts and the surfaces they correspond to. Observe how they are all able to be continuously deformed into a flat surface and then back again.
-		\begin{displayfigure}[h]
-			\begin{minipage}{0.5\textwidth}
-				\centering
-				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{60}{media/animations/helicoid/helicoid/frame-}{17}{300}
-				\caption{Helicoid}
-			\end{minipage}
-			\begin{minipage}{0.5\textwidth}
-				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/monkey-saddle/monkey-saddle/frame-}{1}{30}
-				\caption{Monkey Saddle}
-			\end{minipage}\\
-			\begin{minipage}{0.5\textwidth}
-				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/paraboloid/paraboloid/frame-}{1}{30}
-				\caption{Paraboloid}
-			\end{minipage}
-			\begin{minipage}{0.5\textwidth}
-				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hemisphere/hemisphere/frame-}{1}{30}
-				\caption{Hemisphere}
-			\end{minipage}
-			\begin{minipage}{0.5\textwidth}
-				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hyperbolic-paraboloid/hyperbolic-paraboloid/frame-}{1}{30}
-				\caption{Hyperbolic Paraboloid}
-			\end{minipage}
-			\begin{minipage}{0.5\textwidth}
-				\animategraphics[loop,autoresume,autopause,autoplay, width=0.85\textwidth]{12}{media/animations/hyperboloid/hyperboloid/frame-}{1}{30}
-				\caption{Hyperboloid}
-			\end{minipage}
-		\end{displayfigure}
-	\end{example}
-	
-	
-	\newpage
-	
 	\subsection*{Manifolds}
 	In the previous section, we saw that we were able to construct many surfaces using just a single chart. It might be tempting to think that a theory of charts is all we need to study all conceivable surfaces. This, however, is not the case. The issue lies in the requirement that our charts be homeomorphic to the space they represent. This is a strong requirement that prevents us from studying many surfaces which may not be homeomorphic to flat space with charts alone.
 	\begin{example}
@@ -388,9 +391,8 @@
 		An $n$-dimensional manifold $M$ is smooth if, whenever two charts $(U, \phi)$ and $(V, \psi)$ of $M$ overlap, the transition map $\phi^{-1} \circ \psi : \RR^n \to \RR^n$ is differentiable. 
 	\end{definition}
 	
-	
-	
-	
+
+
 	\newpage
 	\section{The Measure of a Manifold}
 	So far, it seems that every time we introduce a concept to help us understand curvature, the rug gets pulled and it turns out that what we've been studying wasn't \textit{quite} enough to speak on the nature of curvature. First, the notions of charts were discussed and studied. However, it was pointed out that charts alone weren't enough to discuss many surfaces that we would otherwise wish to. To remedy this, we bundled and stitched charts together to create manifolds. We then saw how the definition of a manifold was actually too broad to have a coherent discussion on curvature. It allowed for manifolds with sharp curves or edges, which we pointed out were not the curvature we are interested in studying. So we refined the definition of the manifold to one more suitable to a discussion of curvature: smooth manifolds. Exasperation would not be an unreasonable emotion for a reader at this point. Thankfully, it turns out that smooth manifolds are sufficient for our purpose of understanding curvature.\\
