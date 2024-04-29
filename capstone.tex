@@ -38,6 +38,8 @@
 \let\oldphi\phi % Rebind the crappy looking phi to another variable
 \let\phi\varphi % and redefine phi as the good looking one
 
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
 
 \newcommand\<{\ensuremath{\left\langle}}
 \renewcommand\>{\ensuremath{\right\rangle}}
@@ -98,7 +100,7 @@
 \usepackage{ifthen}
 \usepackage{lipsum}
 
-%\newcommand{\showfigure}{show figs}
+\newcommand{\showfigure}{show figs}
 
 \newenvironment{displayfigure}[1][]
 {%
@@ -122,7 +124,7 @@
 	\maketitle
 	\begin{abstract}
 		\indent
-		This paper seeks to cover the materials necessary prior to taking a course in Riemannian geometry as well as an exploratory look into the materials which would be covered in that class in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. We will assume the reader's understanding of inner product spaces, linear transformation, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right .As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful from a first year course in calculus is necessary. However, a course in vector calculus is not required.
+		This paper seeks to cover the materials necessary prior to taking a course in Riemannian geometry as well as an exploratory look into the materials which would be covered in that class in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. We will assume the reader's understanding of inner product spaces, linear transformation, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right. As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful from a first year course in calculus is necessary. However, a course in vector calculus is not required.
 		\\
 		\\
 		\indent
@@ -130,7 +132,7 @@
 	\end{abstract}
 	
 	\section*{Introduction}
-	TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro 
+	TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro to study of curves and curvature. In must be mentioned that $\RR^2$ and Euclidean space more generally is flat. 
 	
 	
 	\section{Making a Manifold}
@@ -150,55 +152,59 @@
 	\begin{definition}
 		A chart for a topological space $M$ is a homeomorphism from an open set $U \subseteq \RR^n$ to an open set $V \subseteq M$.
 	\end{definition}
-	\noindent
-	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}, which will be done shortly. Before that, however, a quick disclaimer. The definitions for these terms will not be the same as one is likely to find in a topology course. They are deliberately tailored and narrowed to fit the scope of this paper. While the definitions will surely differ from a proper topology course, within the scope of the paper they will be equivalent. 
+	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}. \\
+	\\
+	We start with the definition of a topological space
 	\begin{definition}
-		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_p(\varepsilon) = \{x : x \in \RR^n, |x - p| < \varepsilon\}$. When $p$ is omitted from the expression, it is assumed to be centered at the origin.
+		A topological space is a set $M$ along with a collection $\tau$ of open sets of $M$ such that
+		\begin{enumerate}[1.]
+				\item Both $M$ and the empty set are in $\tau$. Succinctly, $M \in \tau, \emptyset \in \tau$.
+				\item For any index set $U_i \in \tau, \hspace*{5px}\cup U_i \in \tau$. That is, an arbitrary union of open sets is open.
+				\item For any finite collection $U_k \in \tau, \hspace*{5px}\cap^n_{k=0} U_k \in \tau$. That is, finite intersections of open sets are open.
+		\end{enumerate}
+	\end{definition}
+	This definition, at first glance, might seem horribly abstract, and that's because it is. This definition is meant to encapsulate any conceivable notion of a ``space'', even those incomprehensible to the human mind. Not to mention that it seems that we need to understand what an open set is first before we can understand what a topological space is. Let us ignore for now what the definition of an open set it. For now, we will consider it simply a property that certain subsets of $M$ have. If we are comfortable with this, then the above definition is defining a very simple idea
+	\begin{enumerate}[1.]
+		\item A topological space consists of two sets: $M$ and a collection of subsets of $M$ called $\tau$
+		\item We call the elements of $\tau$ \textit{open sets}
+		\item For any collection of open sets of $\tau$, we know their union must also be in $\tau$
+		\item For any finite collection of open sets of $\tau$, their intersection must also be in $\tau$.
+	\end{enumerate}
+	That's it. It's not obvious how this definition relates to our metaphysical understanding of a ``space''. It's far too abstract. That's largely because the notion of ``space'' comes not from the definition of a topological space, but rather how you define the open sets. It's the open sets which determine how a set becomes a space - the definition of a topological space seeks only to limit the arbitrary labeling of sets as open in such a way so that our normal intuitions of ``space'' are held.\\
+	\\
+	Thus, to understand what a topological space is, it is necessary to develop an intuition of open sets. At its most fundamental, open sets determine what it means for a function to be \textit{continuous}.
+	\begin{definition}
+		Let $M$ and $N$ be topological spaces, a function $f : M \to N$ is continuous if for every open set $V \subseteq N$, the inverse image $f^{-1}(V) \subseteq M$ is an open set of $M$.
+	\end{definition} 
+	Most students first learn of continuity in high school, where they are taught that a function is continuous if the graph can be drawn without removing a pencil from the paper. That is, there are no gaps or leaps of the graph of a function. In calculus, continuity of a function is determined by whether the limit of a function to a point equals the function evaluated at that point, for every point. Both these definitions are saying, in their own respective contexts, that continuous functions are functions which send nearby points to nearby points. Definition 1.3 is no different. It is saying precisely that, only in the language of topology. Open sets, therefore, determine what it means for points to be ``nearby'' each other.\\
+	\\
+	Let's take a step away from the abstraction and focus on a space we are already familiar with, $\RR^n$, Euclidean space. There are, in fact, many ways of defining open sets on $\RR^n$ so that it forms a topology. There are even many different ways of defining open sets on $\RR^n$ so that it produces \textit{the same topology} on $\RR^n$. We will show a common way of defining the standard topology on $\RR^n$ right now. This topology comports to our usual notion of space, closeness, and distance that we are used to seeing in out everyday lives. It will also be the assumed topology for the rest of this paper whenever we discuss $\RR^n$ and its open sets.
+	\\
+	\\
+	Recall that we think of open sets as \textit{defining} points which are close together. One way of expressing this mathematically (but certainly not the only way!) is to say a subset $U \subseteq \RR^n$ has points that are close together (i.e. $U$ is open) if, around every point $p \in U$ there is another set $V$ of points which are close together (i.e. $V$ is open), with $p \in V$ and such that $V \subset U$. Let's reify this idea.
+	\begin{definition}
+		An open ball of radius $\varepsilon \in \RR$ centered at $p \in \RR^n$ is the set $B_\epsilon(p) = \{x : x \in \RR^n, |x - p| < \epsilon\}$. When $p$ is omitted from the expression, it is assumed to be centered at the origin.
 	\end{definition}
 	\begin{definition}
-		A set $U \subseteq \RR^n$ is open if for every $p \in U$ there exists an $\varepsilon \in \RR$ such that $B_p(\varepsilon) \subseteq U$.
+		A set $U \subseteq \RR^n$ is open if for every $p \in U$ there exists an $\epsilon \in \RR$ such that $B_\epsilon(p) \subseteq U$.
 	\end{definition}
-	\noindent
-	An open set is one where around every point there is a open ball which remains in the set. Intuitively, something living inside an open set would always be able to stretch out their arms at least a little, no matter where they are.
 	\begin{example}
-		An open ball in $\RR^2$ of radius 1 centered at the origin is open.
-		\\
+		The dashed circle is an open ball $B_\epsilon \subset \RR^2$. Notice how no matter what point in the open ball is selected, it is always possible to surround it with another open ball. Thus, open balls are open sets.
 		\begin{displayfigure}[h]
 			\centering
 			\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{20}{media/animations/open-ball/open-ball/frame-}{1}{90}
 		\end{displayfigure}
-		\\
-		The dashed line indicates that the boundary is removed. Notice as we move the dot around the ball, we may always shrink the red circle so that it lies entirely inside the ball.
 	\end{example}
+	Of course, not every set has this property
 	\begin{example}
-		The closed ball of radius 1 $\bar{B} = \{x : x \in \RR^2, |x| \leq 1\}$ is not open.
+		The ball of radius 1 which contains its boundary, $\bar{B} = \{x : x \in \RR^2, |x| \leq 1\}$, is not open.
+		\begin{displayfigure}[h]
+			\centering
+			\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{15}{media/animations/closed-ball/closed-ball/frame-}{1}{30}
+		\end{displayfigure}
 	\end{example}
-	\begin{displayfigure}[h]
-		\centering
-		\animategraphics[loop,autoresume,autopause,autoplay, width=0.5\textwidth]{15}{media/animations/closed-ball/closed-ball/frame-}{1}{30}
-	\end{displayfigure}
-	Unlike in the previous example, this ball contains its boundary. No matter how small of a circle you draw around a point on the boundary, there will always be a part that remains outside the original circle. Therefore, the closed ball is not open.
+	By considering the collection of all open sets $U$ as defined in Definition 1.5, we have built the standard topology on $\RR^n$. Check to see that this construction does indeed form a valid topology as defined in Definition 1.2. It is clear that around any point in $\RR^n$ and $\emptyset$ there is an open ball surrounding every point contained in $\RR^n$ and $\emptyset$ (the latter being vacuously true). Showing that this forms a topology, however, will be left as an exercise.\\
 	\\
-	\\
-	With an understanding what an open set is, we are now ready to give the definition for a topological space
-	\begin{definition}
-		A topological space is a set $M$ along with a collection $\tau$ of open sets of $M$ such that
-		\begin{enumerate}[1.]
-			\item Both $M$ and the empty set are in $\tau$. Succinctly, $M \in \tau, \emptyset \in \tau$.
-			\item For any index set $U_i \in \tau, \hspace*{5px}\cup U_i \in \tau$. That is, an arbitrary union of open is open.
-			\item For any finite collection $U_k \in \tau, \hspace*{5px}\cap^n_{k=0} U_k \in \tau$. That is, finite intersections of open sets are open.
-		\end{enumerate}
-	\end{definition}
-	This definition is abstract by design. It is meant to encapsulate many possible, even unimaginable, topological spaces. However, for our purposes we need only translate this to our language with open balls and the ideas will be more clear
-	\begin{definition}
-		A topological space is a set $M \subseteq \RR^n$ with a collection $\tau$ of open balls of $M$ such that
-		\begin{enumerate}[1.]
-			\item The open balls $B(0) = \emptyset$ and $B(\infty) = \RR^n$ are in $\tau$.
-			\item Any union of open balls will be open.
-			\item Any finite intersection of open balls will be open.
-		\end{enumerate}
-	\end{definition}
-	
 	Finally, we get to the last of the vocabulary to unpack, \textit{homeomorphism}. When we think of two objects being homeomorphic, then we may continuously transform one into the other without ripping, tearing, or gluing our shape, and then back again.\\
 	\begin{displayfigure}[h]
 		\centering
@@ -231,7 +237,8 @@
 	\begin{definition}
 		A chart is an open ball $U \subseteq \RR^n$ representing some surface $M$ in such a way that $U$ can be continuously transformed into $M$ and back again.
 	\end{definition} 
-	In essence, a chart is a flat map of a (potentially) curvy space.
+	In essence, a chart is a flat map of a (potentially) curvy space.\\
+	
 	\newpage
 	\begin{example}
 		The following animations illustrate a variety of charts and the surfaces they correspond to. Observe how they are all able to be continuously deformed into a flat surface and then back again.
@@ -272,11 +279,11 @@
 			\animategraphics[loop,autoresume,autopause,autoplay, width=\textwidth]{30}{media/animations/sphere-not-flat/sphere-not-flat/frame-}{1}{75}
 		\end{displayfigure}
 	\end{example}
-	Illustrated in the animation is the unfortunate fact that we cannot transform the sphere into a flat surface without overlapping two different regions on the sphere onto the same region of a chart, in violation of rule (1) of the definition of homeomorphism. If the sphere were missing one of the poles, then it would in fact be possible to cover it in one chart. However, this requires that we puncture the sphere, a violation of rule (2). This is by no means meant to be a proof of the fact that we cannot cover the sphere in a single chart, rather it is only meant to illustrate what goes wrong when we try to. A curious reader would find that with only a brief exploration into topology, and in particular Brouwer's fixed point theorem, the proof that it is impossible to cover the sphere in a single chart is rather quick and enlightening.\\
+	Illustrated in the animation is the unfortunate fact that we cannot transform the sphere into a flat surface without overlapping two different regions on the sphere onto the same region of a chart, in violation of rule (1) of the definition of homeomorphism. If the sphere were missing one of the poles, then it would in fact be possible to cover it in one chart - an example visualized in Example 1.3. However, this requires that we puncture the sphere, a violation of rule (2). This is by no means meant to be a proof of the fact that we cannot cover the sphere in a single chart, rather it is only meant to illustrate what goes wrong when we try to. A curious reader would find that with only a brief exploration into topology, and in particular Brouwer's fixed point theorem, the proof that it is impossible to cover the sphere in a single chart is rather enlightening.\\
 	\\
 	Since the theory of charts is not enough to study surfaces as typical and canonical as the sphere, we may wonder if is even worth talking about them at all. Is all hopelessly lost? Did the author really just spend the past $\thepage$ pages talking about something that has no bearing on the study of surfaces? Of course not. As is so common in mathematics, when our theory runs into a wall, we extend the theory so we may be able to walk up walls. \\
 	\\
-	The key idea is not to limit ourselves by using only a \textit{single} chart. Instead, we will use multiple charts to cover our surfaces. Each chart will represent a local patch of the surface. This local patch, by virtue of being covered by a chart, will look like an open set of Euclidean space. Because of this, we say that our surfaces are \textit{locally Euclidean}. A collection of charts which cover a surface, when taken in aggregate, will be powerful enough to describe a vast amount of spaces. This collection is called an \textit{atlas}, and the space which they cover is called a \textit{manifold}. With that, we present two definitions.
+	The key idea is not to limit ourselves by using only a \textit{single} chart. Instead, we will use multiple charts to cover our surfaces. Each chart will represent a local patch of the surface. This local patch, by virtue of being covered by a chart, will look like an open set of Euclidean space. Because of this, we often say that our surfaces are \textit{locally Euclidean}. A collection of charts which cover a surface, when taken in aggregate, will be powerful enough to describe a vast amount of spaces. This collection is called an \textit{atlas}, and the space which they cover is called a \textit{manifold}. With that, we present two definitions.
 	\begin{definition}
 		An atlas is a collection of charts of the same dimension.
 	\end{definition}
@@ -313,9 +320,10 @@
 	\\
 	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. To do so, let us first introduce the concept of a path. We understand intuitively that a path is just some trajectory through space that doesn't have gaps or holes in it. The following definition expresses mathematically this idea
 	\begin{definition}
+		TODO: Change this definition so that every connected set $U \subseteq \RR$ we have $U \to \RR$ a path
 		Let $M$ be a manifold. A path is a continuous function $[0, 1] \to M$.
 	\end{definition}
-	So a path is a function which maps a line segment continuously over a manifold.\\
+	This definition of path encompasses many different notions of what a path can be. We could have a path from two points, one that goes on forever off to infinity, or one between two points but never quiet reaching them. In general, we can think of a path as some curve through space.\\
 	\\
 	Recall that our overall goal is to develop a theory so we may discuss curvature. Curvature, we understand, is a bending or change of direction of an object (or in our case, manifolds). However, it's not just any change of direction or bending. For example, a zig-zag path changes direction frequently, however, one wouldn't consider it ``curving'' through space. For something to be curved, it requires a smooth change of direction. \\
 	\begin{example}
@@ -338,9 +346,9 @@
 			\animategraphics[loop,autoresume,autopause,autoplay,width=\textwidth]{30}{media/animations/direction-path/direction-path/frame-}{1}{75}
 		\end{displayfigure}
 	\end{example}
-	Let's explore this idea a bit more as it is essential to understanding smooth manifolds and curvature more broadly. In a first year calculus course, we learn of the derivative and how it is used to calculate the slope of the tangent line to functions. The tangent line indicates the instantaneous direction of the function at any given point. So, the directions indicated by the arrows in Example 1.8 are nothing more than the derivative of the paths, with additional information indicating the direction of travel. In fact, the derivatives of the equations for the paths were exactly what were used to compute the direction of the arrows in the animations!
+	Let's explore this idea a bit more as it is essential to understanding smooth manifolds and curvature more broadly. In a first year calculus course, we learn of the derivative and how it is used to calculate the slope of the tangent line to functions. The tangent line indicates the instantaneous direction of the function at any given point. So, the directions indicated by the arrows in Example 1.8 are nothing more than the derivative of the paths, indicated by the direction of travel. In fact, the derivatives of the equations for the paths were exactly what were used to compute the direction of the arrows in the animations!
 	\begin{definition}
-		Let $M$ be a manifold. The derivative of a path $f : [0, 1] \to M$ at time $t_0 \in [0,1]$ is a vector. The direction of the vector indicates the direction of travel along the path as a particle moves through $t_0$ from $[0, 1]$. The magnitude of the vector is the speed of the particle at time $t_0$. 
+		Let $M$ be a manifold. The derivative of a path $f : U \to M$ at time $t_0 \in U$ is a vector. The direction of the vector indicates the direction of travel along the path as a particle moves in a direction in $U$. The magnitude of the vector is called the speed of the particle at time $t_0$. 
 	\end{definition}
 	\begin{definition}
 		A smooth path is a path whose derivative is continuous. That is, the direction and speed of the derivative are continuous.
