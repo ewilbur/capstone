@@ -100,7 +100,7 @@
 \usepackage{ifthen}
 \usepackage{lipsum}
 
-\newcommand{\showfigure}{show figs}
+%\newcommand{\showfigure}{show figs}
 
 \newenvironment{displayfigure}[1][]
 {%
@@ -136,9 +136,13 @@
 	\end{abstract}
 	
 	\section*{Introduction}
-	TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro to study of curves and curvature. In must be mentioned that $\RR^2$ and Euclidean space more generally is flat. 
+	%TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro to study of curves and curvature. In must be mentioned that $\RR^2$ and Euclidean space more generally is flat. 
+	The development of a general mathematical theory often begins with an attempt to model or understand something realized in the physical world. Calculus, for example, was first developed by Newton in order to model the motion of the planets, and now it has developed into a theory which can completely divorce itself from anything to do with physical reality. This is just as true for the theory of curvature and curved spaces.\\
+	\\
+	The modern understanding of curvature is often traced back to Gauss and his work in developing the beginnings of differential geometry. He was tasked with producing a navigable map for ships to use at sea which preserved relative distances and angles. Gauss worked on the problem until he made a ``remarkable discovery'' which he called the Theorema Egregium, finding that no such map could possibly exist due to the curvature of the Earth and the lack of curvature of a flat map. This is seen as the start of a fruitful and beautiful subjects of differential and Riemmanian geometry.\\
+	\\
+	We begin by asking an intuitively obvious, but mathematically difficult question: \textit{what even is curvature?} We know from our daily experience what curvature is. The way a snake moves, the path a ball takes flying through the air, or the ripples of a pond a thrown pebble makes are all examples of this idea of curvature. Compare this to the jagged teeth of a saw blade, a zig-zag path, or even mathematical objects like triangles and squares. These seem decidedly less curvy than the previous examples. 
 	\newpage
-	
 	\section{Making a Manifold}
 	Any proper discussion of curvature must first answer the question \textit{what is being curved?} After all, asking how curvy the integers are is meaningless, while asking the same for a sphere is seemingly not. The difference lies in the notion of space and geometry for the latter that the former lacks. A language capturing this intuition is necessary if any progress is to be made on the theory of curvature. Thankfully, mathematicians have developed such a language for discussing all manner of surfaces. A complete discussion of the theory and language would require an exploration into topology in a way more rigorous than necessary to develop an intuition for the subject at hand, so instead, many of the gaps in rigor should be filled in by the reader's intuition.\\
 	\\
@@ -617,13 +621,25 @@
 	\\
 	This definition may seem a bit mangled. So we will explain what is going on a bit more geometrically. For each direction we head on the surface, there is a unit path which has a normal vector indicating the curvature of the path. The surface normal $s$ serves as a yardstick of sorts. It is there to keep track of the direction of curvature relative to the surface. When the normal direction of the path points away from the surface normal, the value of $k$ will be negative as seen from taking the inner product. When the two coincide in direction, the inner product will be positive. If it happens that all the paths have normal curvature pointing either away from, or towards $s$, then either $k_1 < 0$ and $k_2 < 0$ or $k_1 > 0$ and $k_2 > 0$ so in either case, $k_1k_2 > 0$ as the Gaussian curvature at the point is positive. If, however, the surface curves towards $s$ for some paths and away from $s$ in another, then $k_1 > 0$ and $k_2 < 0$ or $k_1 < 0$ and $k_2 > 0$. In either case, $k_1k_2 < 0$ and the point is said to have negative Gaussian curvature. Finally, if one of the paths has no normal curvature, then either $k_1 = 0$ or $k_2 = 0$ and the point has zero Gaussian curvature.
 	\begin{example}
-		Positive Gaussian curvature example
+		In purple is the surface normal vector. The blue and red vectors correspond to the normal vectors to the blue and red paths respectively. Observe how both the normals to the paths point in the same direction away from the surface normal to the surface. This indicates positive Gaussian curvature
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.45\textwidth]{positive-gauss/positive-gauss.png}
+		\end{displayfigure}
 	\end{example}
 	\begin{example}
-		Negative Gaussian curvature example
+		Here we see that the path normal of the blue path points in the same direction as the surface normal in purple. Additionally, the path normal for the path in red points in the opposite direction of the surface normal. This implies negative Gaussian curvature.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.35\textwidth]{negative-gauss/negative-gauss.png}
+		\end{displayfigure}
 	\end{example}
 	\begin{example}
-		Zero Gaussian curvature example
+		We see here how the maximum Gaussian curvature is zero since the blue path has no normal path component.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.25\textwidth]{zero-gauss/zero-gauss.png}
+		\end{displayfigure}
 	\end{example}
 	
 	While it still might not seem immediately obvious why we care about Gaussian curvature, it turns out that Guass, who first discovered it, found that Gaussian curvature is intrinsic to the surface. What this means is that a manifold with, say, positive Gaussian curvature, can never be deformed smoothly in such a way so that the result has negative or zero Gaussian curvature. This is exactly why you can fold a pizza in half so that it doesn't bend when you eat it. The pizza exists on a flat plane, and folding it does not change its Gaussian curvature. It will not be able to further bend for that would require the pizza to have negative Gaussian curvature, which Gauss showed is not possible.
