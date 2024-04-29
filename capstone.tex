@@ -196,6 +196,7 @@
 		\end{displayfigure}
 	\end{example}
 	Of course, not every set has this property
+	\newpage
 	\begin{example}
 		The ball of radius 1 which contains its boundary, $\bar{B} = \{x : x \in \RR^2, |x| \leq 1\}$, is not open.
 		\begin{displayfigure}[h]
@@ -207,7 +208,6 @@
 	\\
 	Finally, we get to the last of the vocabulary to unpack, \textit{homeomorphism}. When we think of two objects being homeomorphic, then we may continuously transform one into the other without ripping, tearing, or gluing our shape, and then back again.\\
 	\begin{displayfigure}[h]
-		\centering
 		\begin{minipage}{0.5\textwidth}
 			\animategraphics[loop,autoresume,autopause,autoplay, width=0.65\textwidth]{20}{media/animations/coffee-mug-donut/mug-torus/frame-}{1}{116}
 		\end{minipage}%
@@ -237,10 +237,16 @@
 	\begin{definition}
 		A chart is an open ball $U \subseteq \RR^n$ representing some surface $M$ in such a way that $U$ can be continuously transformed into $M$ and back again.
 	\end{definition} 
-	In essence, a chart is a flat map of a (potentially) curvy space.\\
+	In essence, a chart is a flat map of a (potentially) curvy space.
+	
+	
+	% TODO
+	% TODO Chart examples: high compile cost
+	% TODO
 	
 	\newpage
 	\begin{example}
+%
 		The following animations illustrate a variety of charts and the surfaces they correspond to. Observe how they are all able to be continuously deformed into a flat surface and then back again.
 		\begin{displayfigure}[h]
 			\begin{minipage}{0.5\textwidth}
@@ -270,7 +276,10 @@
 			\end{minipage}
 		\end{displayfigure}
 	\end{example}
+	
+	
 	\newpage
+	
 	\subsection*{Manifolds}
 	In the previous section, we saw that we were able to construct many surfaces using just a single chart. It might be tempting to think that a theory of charts is all we need to study all conceivable surfaces. This, however, is not the case. The issue lies in the requirement that our charts be homeomorphic to the space they represent. This is a strong requirement that prevents us from studying many surfaces which may not be homeomorphic to flat space with charts alone.
 	\begin{example}
@@ -298,7 +307,7 @@
 			\animategraphics[loop,autoresume,autopause,autoplay,palindrome, width=\textwidth]{30}{media/animations/sphere-manifold/sphere-manifold/frame-}{1}{75}
 		\end{displayfigure}
 	\end{example}
-	The animation shows that the charts of a manifold may overlap. On the region where charts overlap, we will have points which can be described by more than one chart. These regions of overlap will have a special consideration when we discuss smooth manifolds in the next section. For now, we will only consider how we can move between two charts which describe the same region of our manifold. 
+	The animation in Example 1.4 shows that the charts of a manifold may overlap. On the region where charts overlap, we will have points which can be described by more than one chart. These regions of overlap will have a special consideration when we discuss smooth manifolds in the next section. For now, we will only consider how we can move between two charts which describe the same region of our manifold. 
 	\begin{definition}
 		Given two charts $(U, \phi), (V, \psi)$, of a manifold $M$, if $\phi(U) \cap \psi(V) \neq \emptyset$, then the transition map is the homeomorphism $\phi^{-1} \circ \psi : \RR^n \to \RR^n$.
 	\end{definition}
@@ -320,7 +329,7 @@
 	\\
 	Before we do that, however, let us see what goes wrong when using our current definition of manifolds. To do so, let us first introduce the concept of a path. We understand intuitively that a path is just some trajectory through space that doesn't have gaps or holes in it. The following definition expresses mathematically this idea
 	\begin{definition}
-		TODO: Change this definition so that every connected set $U \subseteq \RR$ we have $U \to \RR$ a path
+		% TODO: Change this definition so that every connected set $U \subseteq \RR$ we have $U \to \RR$ a path
 		Let $M$ be a manifold. A path is a continuous function $[0, 1] \to M$.
 	\end{definition}
 	This definition of path encompasses many different notions of what a path can be. We could have a path from two points, one that goes on forever off to infinity, or one between two points but never quiet reaching them. In general, we can think of a path as some curve through space.\\
@@ -334,10 +343,7 @@
 		\end{displayfigure}
 	\end{example}
 	Let's imagine a person walking along the zig-zag curve on the left. At first, they will walk in a straight line until they reach the first corner. When they arrive at the corner, they must pause, change their direction, and then proceed walking. Compare this to that same person walking along the path on the right. Unlike before, they do not need to stop in order to change direction. They instead are able to walk along the path while slowly adjusting their direction as they walk.
-	
-	
-	
-	
+
 	\newpage
 	\begin{example}
 		One key observation that we can make is how the direction the dot on the zig-zag path is moving changes abruptly when it reaches a corner. Compare this to the dot moving along the smooth curve. The direction it is moving does not change abruptly. If we wish to talk about curvature, we require that these tangent directions do not change abruptly.
@@ -346,6 +352,8 @@
 			\animategraphics[loop,autoresume,autopause,autoplay,width=\textwidth]{30}{media/animations/direction-path/direction-path/frame-}{1}{75}
 		\end{displayfigure}
 	\end{example}
+	
+
 	Let's explore this idea a bit more as it is essential to understanding smooth manifolds and curvature more broadly. In a first year calculus course, we learn of the derivative and how it is used to calculate the slope of the tangent line to functions. The tangent line indicates the instantaneous direction of the function at any given point. So, the directions indicated by the arrows in Example 1.8 are nothing more than the derivative of the paths, indicated by the direction of travel. In fact, the derivatives of the equations for the paths were exactly what were used to compute the direction of the arrows in the animations!
 	\begin{definition}
 		Let $M$ be a manifold. The derivative of a path $f : U \to M$ at time $t_0 \in U$ is a vector. The direction of the vector indicates the direction of travel along the path as a particle moves in a direction in $U$. The magnitude of the vector is called the speed of the particle at time $t_0$. 
@@ -529,8 +537,6 @@
 	\end{definition}
 	
 
-	
-	
 	\newpage
 	\section{Curvature}
 	Our theory is developed enough to finally begin exploring the main topic of this paper: curvature. In much the same way we built up a theory of manifolds starting from the basic charts, building all the way up to smooth manifolds, we develop our theory of curvature by studying how simple manifolds curve. We will then generalize these ideas to more complicated manifolds to broaden our theory. 
