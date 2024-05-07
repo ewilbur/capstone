@@ -1,0 +1,5 @@
+Axler, S. (2024). Linear Algebra Done Right. Cham: Springer International Publishing. 
+Do Carmo, M. P. (2023). Differential Geometry of Curves and Surfaces. Boca Raton: CRC Press, Taylor & Francis Group. 
+Lee, J. M. (2013). Introduction to Smooth Manifolds. New York: Springer. 
+Lee, J. M. (2018). Introduction to Riemannian Manifolds. New York: Springer. 
+Munkres, J. R. (2000). Topology. Upper Saddle River, NJ: Prentice Hall. 

@@ -12,6 +12,10 @@
 }
 
 
+%\usepackage[backend=biber, style=authoryear]{biblatex}
+%\addbibresource{bibby.bib}
+
+
 % Package used for creating hyperlinks
 %\usepackage{hyperref}
 %\hypersetup{
@@ -100,7 +104,8 @@
 \usepackage{ifthen}
 \usepackage{lipsum}
 
-\newcommand{\showfigure}{show figs}
+
+%\newcommand{\showfigure}{show figs}
 
 \newenvironment{displayfigure}[1][]
 {%
@@ -134,7 +139,6 @@
 		\indent
 		By no means should this be seen as a full and rigorous exploration into the vast topic of Riemannian and differential geometry; many tomes have be written doing such a task. Instead, it will leverage visual intuition of the space we occupy to make broad and powerful statements about surfaces more generally. Of course, visual intuition is limited by the dimension we occupy, so many generalizations will be stated, without proof, with references to where one could find proofs.
 	\end{abstract}
-	
 	\section*{Introduction}
 	%TODO: Talk briefly on the metaphysics of curvature. Differentiate between something that is definitely not a curve, a straight line. Mention history, fifth postulate, and lay the intro to study of curves and curvature. In must be mentioned that $\RR^2$ and Euclidean space more generally is flat. 
 	The development of a general mathematical theory often begins with an attempt to model or understand something realized in the physical world. Calculus, for example, was first developed by Newton in order to model the motion of the planets, and now it has developed into a theory which can completely divorce itself from anything to do with physical reality. This is just as true for the theory of curvature and curved spaces.\\
@@ -338,7 +342,7 @@
 	\subsection*{Smooth Manifolds}
 	So far, our discussion has been centered around building up an intuition and language for manifolds. We have actually answered the question posed at the very beginning of this paper, \textit{what is being curve}. The answer: manifolds. As is so common in mathematics, when one question is answered, others naturally arise. While we now know \textit{what} is being curved, we do not yet know \textit{how} it is being curved. Unfortunately, we are not in a position to answer this question just yet. The issue is that our definition for a manifold is not powerful enough to discuss topics as complex as curvature.\\
 	\\
-	If you recall, the way we built up to the definition of manifolds was my stitching together regions of flat space. We then were able to discuss and study manifold by referencing their charts. However, the charts are just open sets of Euclidean space. Not only are they flat, they are essentially as flat as mathematically possible. So how can we possibly discuss curvature with only our collection of charts? The answer is that we can't. The definition is simply not capable of expressing these ideas.\\
+	If you recall, the way we built up to the definition of manifolds was by stitching together regions of flat space. We then were able to discuss and study manifold by referencing their charts. However, the charts are just open sets of Euclidean space. Not only are they flat, they are essentially as flat as mathematically possible. So how can we possibly discuss curvature with only our collection of charts? The answer is that we can't. The definition is simply not capable of expressing these ideas.\\
 	\\
 	Not all is lost, however. Much like we were able to extend our definition of charts to manifolds and expand the types of topological spaces we could talk about, we can build upon our current definition of manifolds in a way powerful enough to discuss curvature.\\
 	\\
@@ -652,31 +656,71 @@
 	We've seen up to now how to find curvature of one and two dimensional manifolds through normal curvature for paths and Gaussian curvature for surfaces. In order to generalize further to manifolds of higher dimension, a brief discussion must be had on geodesics as they are essential for defining sectional curvature, the analog to Gaussian curvature for higher dimensional manifolds. A proper discussion of geodesics requires a study into differential equations as well as a more thorough examination of the topics we have covered so far. Thus, here we introduce the concept intuitively and geometrically, so that the main ideas can be understood for later sections.\\
 	\\
 	A geodesic of a manifold are paths on a manifold which curve only the amount they need to to stay on the manifold. Imagine a car which has the steering wheel locked so it may only travel straight. If we were to put this car on a flat plane, then the path it travels would be a straight line. If this car were to travel alone a sphere, it would travel along a great circle. Though the path the car traces out while traveling along the great circle on a sphere is curved, it is only curved as much as it needs to in order to stay on the sphere. This is how we should visualize geodesics of a surface.
+	\newpage
 	\begin{example}
-		Geodesics of plane
+		The geodesics of a flat plane are straight lines. This makes sense intuitively from our description of geodesics as paths where no force is felt.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.35\textwidth]{plane-geodesic/plane-geodesic.png}
+		\end{displayfigure}
 	\end{example}
 	\begin{example}
-		Show geodesics of sphere
+		The geodesics of a sphere are the ``great circles'' or planar intersections of the sphere passing through the center.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.35\textwidth]{sphere-geodesic/sphere-geodesic.png}
+		\end{displayfigure}
 	\end{example}
 	\begin{example}
-		geodesic of cylinder
+		The three categories of geodesics to a cylinder.
+		\begin{displayfigure}[h]
+			\centering
+			\includegraphics[width=0.15\textwidth]{cylinder-geodesic/cylinder-geodesic.png}
+		\end{displayfigure}
 	\end{example}
 		
 	It is an important fact that for every point on a smooth manifold, for every direction in the tangent space to that point, there exists a unique geodesic going that direction and passing through that point. Thus, no matter where we are on the manifold, we may pick a direction and be guaranteed that a geodesic passes through the point in that direction. In essence, going back to the analogy of the car, on every smooth manifold, no matter what direction we position our car with the steering wheel lock, it will always be able to drive, at least a short distance, in the path of a geodesic.
 	
 	\subsection*{Sectional Curvature}
-	We finish our discussion of curvature by generalizing what we have done to higher dimensions. So far our exploration into curvature has only taken us to one and two dimensional manifolds. Here we define a notion of curvature for all dimensions of manifolds, called the sectional curvature. This is the amalgamation of everything discussed up to this point.\\
+	Before we begin with our last topic of discussion regarding curvature, let's reflect how we got here which will in turn motivate our discussion of sectional curvature.\\
 	\\
-	It is perhaps easiest to understand sectional curvature by explaining how one would compute it. Given a manifold $M$ and a point $p \in M$, we've seen that there is a tangent space $T_pM$ at the point $p$. This tangent space is a vector space, as we've seen. Thus, we can consider all the two dimensional linear subspaces $V \subseteq T_pM$. For each of these two dimensional subspaces, we consider all the geodesic paths emanating from $p$ in the directions of $V$. Taken together, this creates a two dimensional surface in the manifold.
-	\begin{example}
-		Animation showing a geodesic flowout and the resulting surface
-	\end{example}
-	As you can see, this is just a two dimensional surface. Thus, we can compute the Gaussian curvature of it. This is called the sectional curvature for the subspace $V$.\\
+	We began our discussion by investigating why the intuitive concept of curvature seems to make sense for surfaces and shapes, but not for other mathematical objects like integers. We introduced the notion of space, and in particular a \textit{topological space}. This gave us a mathematical way of discussing space. More work still needed to be done. We refined these ideas more by defining and describing topological charts. Still, this wasn't enough, so we built up the theory of manifolds, then smooth manifolds. Each step we developed on the ideas we previously realized - refining and modifying on the previous concepts to develop new ones.\\
 	\\
-	The important thing to see here is that this can be extended for any higher dimensional manifold. Unlike previously where we were only able to discuss curvature of one and two dimensional manifolds, we've extended these notions to the point where the dimension no longer matters.
+	This carried over even to our discussion of curvature. We started by studying the curvature of paths. We extended this idea to curvature of surfaces when we considered the curvature of multiple paths, culminating into the definition of Gaussian curvature. This final section defines sectional curvature by continuing exactly what we've been doing since the start of this paper, using previous concepts and ideas to extend and generalize our definitions.\\
+	\\
+	Imagine we are mathematicians developing this theory of curvature from scratch. So far, we've been able to give mathematical definitions for curvature in one and two dimensions by defining normal and Gaussian curvature respectively. How could we imagine extending these definitions even further to those of higher dimension? One potential way we could think about doing this is by ``cutting out'' two dimensional ``sections'' of our higher dimensional manifold and then computing the Gaussian curvature of each of these sections.\\
+	\\
+	Of course, we would want to cut these sections out in a way that is not totally arbitrary. Simply taking random two-dimensional parts of a manifold might have absolutely no relevance to the properties of the original manifold, thus giving us no information. We must consider ways of slicing up our manifold so that the resulting sections encode information about the curvature of the manifold.\\
+	\\
+	When we started out discussion into curvature, we considered how the acceleration of a path could be used as a test of curvature on a manifold. Geodesics, then, were the paths on the manifold that had no acceleration on the manifold. That is, a geodesic path on a manifold is one that curves exactly as it must in order to stay on the manifold. For example, the geodesic paths on a sphere are great circles, paths which are definitely curved. However, they are paths which curve only enough to stay on the sphere - hence they are geodesics. In this sense, the geodesic paths encode information about the curvature of the manifold. Because of this property of the geodesic encoding curvature of the manifold, we shall use them to carve out our sections.\\
+	\\
+	So geodesics will be the tool we use to carve out sections of our manifold. But which geodesics should we use exactly? To answer this, we turn to the tangent space of a manifold. Recall that the tangent space of a smooth manifold is a vector space defined at every point on the manifold which encodes all possible directions one may travel on it. Thus, the tangent space of a manifold has the same dimension as the underlying manifold. Just like in any vector space, we may consider the two dimensional subspaces of the tangent space. For every two-dimensional subspace, we get a set of directions by considering the set of all unit vectors on the plane. We recall from the section on geodesics that for every unit direction of the tangent space, there is a unique geodesic which goes in that direction. With this, we have the tools to construct a section.\\
+	\\
+	For a smooth manifold $M$ at a point $p$, we construct a section as follows. Let $L \subset T_pM$ be a two-dimensional linear subspace. This yields a set of unit vectors, each of which yields a unique geodesic. These geodesics, when taken in aggregate, create a surface. Since this surface is constructed from the geodesics, it serves as a two-dimensional representation of the curvature of that plane of directions. This section is a two-dimensional surface and so we may compute the Gaussian curvature of it. The Gaussian curvature of the geodesics generated from this plane is called the sectional curvature.\\
+	\\
+	Accounting for all two-dimensional linear subspaces of the tangent space of a manifold in fact \textit{totally defines} the curvature of a manifold at that point. In this respect, the sectional curvature of a manifold is the ``correct'' way to extend curvature to manifolds of higher dimensions.
+	
+	
+%	We finish our discussion of curvature by generalizing what we have done to higher dimensions. So far our exploration into curvature has only taken us to one and two dimensional manifolds. Here we define a notion of curvature for all dimensions of manifolds, called the sectional curvature. This is the amalgamation of everything discussed up to this point.\\
+%	\\
+%	It is perhaps easiest to understand sectional curvature by explaining how one would compute it. Given a manifold $M$ and a point $p \in M$, we've seen that there is a tangent space $T_pM$ at the point $p$. This tangent space is a vector space, as we've seen. Thus, we can consider all the two dimensional linear subspaces $V \subseteq T_pM$. For each of these two dimensional subspaces, we consider all the geodesic paths emanating from $p$ in the directions of $V$. Taken together, this creates a two dimensional surface in the manifold.
+%	\begin{example}
+%		Animation showing a geodesic flowout and the resulting surface
+%	\end{example}
+%	As you can see, this is just a two dimensional surface. Thus, we can compute the Gaussian curvature of it. This is called the sectional curvature for the subspace $V$.\\
+%	\\
+%	The important thing to see here is that this can be extended for any higher dimensional manifold. Unlike previously where we were only able to discuss curvature of one and two dimensional manifolds, we've extended these notions to the point where the dimension no longer matters.
 %	\newpage
 %	\section{Conclusion}
 %	There is still much to be said about curvature and the beauty therein. Much was skipped from a traditional course in the topic and many famous and important results were not mentioned. In fact, there are even alternative ways of discussing curvature.\\
 %	\\
 %	If you are interested in learning more about this beautiful topic, the references at the end of this document are great resources to learn more about this.
+
+\newpage
+\section*{References}
+%Axler, S. (2024). Linear Algebra Done Right. Cham: Springer International Publishing. 
+%Do Carmo, M. P. (2023). Differential Geometry of Curves and Surfaces. Boca Raton: CRC Press, Taylor \& Francis Group. 
+%Lee, J. M. (2013). Introduction to Smooth Manifolds. New York: Springer. 
+%Lee, J. M. (2018). Introduction to Riemannian Manifolds. New York: Springer. 
+%Munkres, J. R. (2000). Topology. Upper Saddle River, NJ: Prentice Hall. 
 \end{document}
