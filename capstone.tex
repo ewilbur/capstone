@@ -12,10 +12,6 @@
 }
 
 
-%\usepackage[backend=biber, style=authoryear]{biblatex}
-%\addbibresource{bibby.bib}
-
-
 % Package used for creating hyperlinks
 %\usepackage{hyperref}
 %\hypersetup{
@@ -133,7 +129,7 @@
 	\maketitle
 	\begin{abstract}
 		\indent
-		This paper seeks to cover the materials necessary prior to taking a course in Riemannian geometry as well as an exploratory look into the materials which would be covered in that class in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. We will assume the reader's understanding of inner product spaces, linear transformation, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right. As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful from a first year course in calculus is necessary. However, a course in vector calculus is not required.
+		This paper seeks to cover the materials necessary prior to taking a course in Riemannian geometry as well as an exploratory look into the materials which would be covered in that class in a way that is both visually stimulating and enlightening. It is directed primarily to early undergraduate students of math who have familiarity with topics from linear algebra. We will assume the reader's understanding of inner product spaces, linear transformation, as well as a familiarity with the geometric understanding of all these ideas. However, a precocious high schooler could follow along after reading chapters 1,2,3, and 6 of Shelden Axler's Linear Algebra Done Right \cite{Axler2024}. As well, practice in computing derivatives and integrals and the geometric meaning therein would be helpful from a first year course in calculus is necessary. However, a course in vector calculus is not required.
 		\\
 		\\
 		\indent
@@ -170,7 +166,7 @@
 
 	From the animation, we can start to make some observations and develop an intuition for what charts do. First, the curved space appears flat in the chart. The chart exists in $\RR^2$, and so is flat, yet despite this, it represents a rather curvaceous function! For those who have held a map or used GPS, this should seem like a natural requirement to have for charts. After all, if a map were required to conform to the natural topography of the region it's meant to represent, it would be rather cumbersome to use. Another thing one might notice is how the path traced out on the chart corresponds rather well to the other path on the surface. Again, this should feel like a natural property that charts should have. If a path followed on a map doesn't match a similar path traced on a surface, then its a bad map. The same holds true for charts. With these observations in mind, we give the formal definition for a chart.
 	\begin{definition}
-		A chart for a topological space $M$ is a pair $(U, \phi)$. The set $U \subseteq \RR^n$ is an open set of $\RR^n$. The function $\phi : U \to V \subseteq M$ is a homeomorphism.
+		A chart for a topological space $M$ is a pair $(U, \phi)$. The set $U \subseteq \RR^n$ is an open set of $\RR^n$. The function $\phi : U \to V \subseteq M$ is a homeomorphism. \cite{Munkres2000}
 	\end{definition}
 	For those without an introduction into topology, this definition is likely meaningless. There are three main pieces of vocabulary to unpack: \textit{topological spaces}, \textit{homeomorphism}, and \textit{open sets}. \\
 	\\
@@ -180,7 +176,7 @@
 		\begin{enumerate}[1.]
 				\item Both $M$ and the empty set are in $\tau$. Succinctly, $M \in \tau, \emptyset \in \tau$.
 				\item For any index set $U_i \in \tau, \hspace*{5px}\cup U_i \in \tau$. That is, an arbitrary union of open sets is open.
-				\item For any finite collection $U_k \in \tau, \hspace*{5px}\cap^n_{k=0} U_k \in \tau$. That is, finite intersections of open sets are open.
+				\item For any finite collection $U_k \in \tau, \hspace*{5px}\cap^n_{k=0} U_k \in \tau$. That is, finite intersections of open sets are open. \cite{Munkres2000}
 		\end{enumerate}
 	\end{definition}
 	This definition, at first glance, might seem horribly abstract, and that's because it is. This definition is meant to encapsulate any conceivable notion of a ``space'', even those which are completely inconceivable. Not to mention that it seems that we need to understand what an open set is before we can understand what a topological space is. Let us ignore what the definition of an open set it. For now, we will consider it simply a property that certain subsets of $M$ have. If we are comfortable with this, then the above definition is defining a very simple idea
@@ -189,12 +185,13 @@
 		\item We call the elements of $\tau$ \textit{open sets}
 		\item For any collection of open sets of $\tau$, we know their union must also be in $\tau$
 		\item For any finite collection of open sets of $\tau$, their intersection must also be in $\tau$.
+		\item Both the entire set and the empty set are open
 	\end{enumerate}
 	That's it. It's not obvious how this definition relates to our metaphysical understanding of a ``space''. It's far too abstract. That's largely because the notion of ``space'' comes not from the definition of a topological space, but rather how you define the open sets. It's the open sets which determine how a set becomes a space - the definition of a topological space seeks only to limit the arbitrary labeling of sets as open in such a way so that our normal intuitions of ``space'' are held.\\
 	\\
 	Thus, to understand what a topological space is, it is necessary to develop an intuition of open sets. At its most fundamental, open sets determine what it means for a function to be \textit{continuous}.
 	\begin{definition}
-		Let $M$ and $N$ be topological spaces, a function $f : M \to N$ is continuous if for every open set $V \subseteq N$, the inverse image $f^{-1}(V) \subseteq M$ is an open set of $M$.
+		Let $M$ and $N$ be topological spaces, a function $f : M \to N$ is continuous if for every open set $V \subseteq N$, the inverse image $f^{-1}(V) \subseteq M$ is an open set of $M$. \cite{Munkres2000}
 	\end{definition} 
 	Most students first learn of continuity in high school, where they are taught that a function is continuous if the graph can be drawn without removing a pencil from the paper. That is, there are no gaps or leaps of the graph of a function. In calculus, continuity of a function is determined by whether the limit of a function at a point equals the function evaluated at that point, for every point. Both these definitions are saying, in their own respective contexts, that continuous functions are functions which send nearby points to nearby points. Definition 1.3 is no different. It is saying precisely that, only in the language of topology. Open sets, therefore, determine what it means for points to be ``nearby'' each other.\\
 	\\
@@ -230,8 +227,10 @@
 	\\
 	Finally, we get to the last of the vocabulary to unpack, \textit{homeomorphism}. When we think of two objects being homeomorphic, then we may continuously transform one into the other without ripping, tearing, or gluing our shape, and then back again.\\
 	\begin{displayfigure}[h]
+		\centering
 		\begin{minipage}{0.5\textwidth}
 			\animategraphics[loop,autoresume,autopause,autoplay, width=0.65\textwidth]{20}{media/animations/coffee-mug-donut/mug-torus/frame-}{1}{116}
+			\caption{Morph of a torus and a coffee mug \cite{Vieira2007}}
 		\end{minipage}%
 		\begin{minipage}{0.5\textwidth}
 			\animategraphics[loop,autoresume,autopause,autoplay, width=1.5\textwidth]{13}{media/animations/homeo/homeo/frame-}{1}{75}
@@ -246,7 +245,7 @@
 		\begin{enumerate}[1.]
 			\item $f$ is bijective.
 			\item $f$ is continuous.
-			\item $f^{-1}$ is continuous.
+			\item $f^{-1}$ is continuous. \cite{Munkres2000}
 		\end{enumerate}
 	\end{definition}
 	These three conditions encapsulate exactly the conditions mentioned previously, just in the language of topology. The requirement that $f$ and $f^{-1}$ be continuous forbids us from ripping, tearing, and otherwise damaging our space, with $f^{-1}$ also allowing us to ``undo'' the transformation. The requirement that $f$ is bijective means that we cannot ``squish'' open sets of our surface down to a point. It is possible to continuously transform a circle down to a point, there is no way to do this without collapsing the open sets of the circle. In the animation below, the parentheses indicate one of the open sets of the circle. It's clear that as the circle transforms continuously to a point, the open set collapses to a point as well. This violates (1) of the definition of homeomorphism, thus it cannot be a homeomorphism, despite being a continuous transformation.
@@ -328,7 +327,7 @@
 	\end{example}
 	The animation in Example 1.4 shows that the charts of a manifold may overlap. On the region where charts overlap, we will have points which can be described by more than one chart. These regions of overlap will have a special consideration when we discuss smooth manifolds in the next section. For now, we will only consider how we can move between two charts which describe the same region of our manifold. 
 	\begin{definition}
-		Given two charts $(U, \phi), (V, \psi)$, of a manifold $M$, if $\phi(U) \cap \psi(V) \neq \emptyset$, then the transition map is the homeomorphism $\phi^{-1} \circ \psi : \RR^n \to \RR^n$.
+		Given two charts $(U, \phi), (V, \psi)$, of a manifold $M$, if $\phi(U) \cap \psi(V) \neq \emptyset$, then the transition map is the homeomorphism $\phi^{-1} \circ \psi : \RR^n \to \RR^n$. \cite{Lee2013}
 	\end{definition}
 	\begin{example}
 		Shown is the manifold $M$ with two charts. The non-overlapping regions of $V$ and $U$ are colored red and blue respectively. Their shared region is colored green. We see how the transition map $\phi^{-1} \circ \psi$ maps \textit{between the charts}.
@@ -400,7 +399,7 @@
 	With respect to our discussion of smooth paths, it might be tempting to define a smooth manifold as one where every smooth path on a chart produces a smooth path on the manifold. Intuitively, this idea is correct. However, it turns out that when defining these concepts more rigorously, such a definition requires us to be able to compute the derivatives of these paths on the manifold. This isn't a problem with the manifolds we've seen so far because we've been visualizing all our manifolds as being embedded in a surrounding space. Mathematicians, however, prefer to divorce the idea of a manifold and the space which it occupies. They wish to treat the manifold \textit{as a space unto itself}. If we were to accept this definition for smooth manifolds, it would require that we reinvent calculus on every manifold to define what it even means to take a derivative on a manifold. To avoid undertaking such an insurmountable task just to define what it means for a surface to be smooth, mathematicians instead consider an alternative approach involving the differentiability of transition maps between charts of a manifold. Since we understand what it means for a function to be differentiable in $\RR^n$, and transition maps are simply functions $\RR^n \to \RR^n$, we can define a smooth manifold as one where the transition maps are differentiable. Realize, however, that defining smoothness via the transition maps or by requiring that smooth paths on charts be smooth on the manifold gives exactly the same realization of smoothness. 
 	
 	\begin{definition}
-		An $n$-dimensional manifold $M$ is smooth if, whenever two charts $(U, \phi)$ and $(V, \psi)$ of $M$ overlap, the transition map $\phi^{-1} \circ \psi : \RR^n \to \RR^n$ is differentiable. 
+		An $n$-dimensional manifold $M$ is smooth if, whenever two charts $(U, \phi)$ and $(V, \psi)$ of $M$ overlap, the transition map $\phi^{-1} \circ \psi : \RR^n \to \RR^n$ is differentiable. \cite{Lee2013}
 	\end{definition}
 	
 
@@ -551,7 +550,7 @@
 	\\
 	However, unlike a traditional map we are used to seeing in the real world, we are under no obligation to use the exact same scale and compass for every point in the chart. In fact, we may define a specific inner product for every point on $M$. So long as this inner product varies continuously and smoothly (in the sense that points close together give outputs of their inner product close together as well). When done this way, we call the inner product a Riemannian metric.
 	\begin{definition}
-		A Riemannian metric at a point $p \in M$ is a function $g_p : T_pM \times T_pM \to \RR$. If it is defined smoothly and continuously for every point of $M$, then we call $g$ the Riemannian metric on $M$.
+		A Riemannian metric at a point $p \in M$ is a function $g_p : T_pM \times T_pM \to \RR$. If it is defined smoothly and continuously for every point of $M$, then we call $g$ the Riemannian metric on $M$. \cite{Lee2018}
 	\end{definition}
 	
 
@@ -699,28 +698,9 @@
 	For a smooth manifold $M$ at a point $p$, we construct a section as follows. Let $L \subset T_pM$ be a two-dimensional linear subspace. This yields a set of unit vectors, each of which yields a unique geodesic. These geodesics, when taken in aggregate, create a surface. Since this surface is constructed from the geodesics, it serves as a two-dimensional representation of the curvature of that plane of directions. This section is a two-dimensional surface and so we may compute the Gaussian curvature of it. The Gaussian curvature of the geodesics generated from this plane is called the sectional curvature.\\
 	\\
 	Accounting for all two-dimensional linear subspaces of the tangent space of a manifold in fact \textit{totally defines} the curvature of a manifold at that point. In this respect, the sectional curvature of a manifold is the ``correct'' way to extend curvature to manifolds of higher dimensions.
-	
-	
-%	We finish our discussion of curvature by generalizing what we have done to higher dimensions. So far our exploration into curvature has only taken us to one and two dimensional manifolds. Here we define a notion of curvature for all dimensions of manifolds, called the sectional curvature. This is the amalgamation of everything discussed up to this point.\\
-%	\\
-%	It is perhaps easiest to understand sectional curvature by explaining how one would compute it. Given a manifold $M$ and a point $p \in M$, we've seen that there is a tangent space $T_pM$ at the point $p$. This tangent space is a vector space, as we've seen. Thus, we can consider all the two dimensional linear subspaces $V \subseteq T_pM$. For each of these two dimensional subspaces, we consider all the geodesic paths emanating from $p$ in the directions of $V$. Taken together, this creates a two dimensional surface in the manifold.
-%	\begin{example}
-%		Animation showing a geodesic flowout and the resulting surface
-%	\end{example}
-%	As you can see, this is just a two dimensional surface. Thus, we can compute the Gaussian curvature of it. This is called the sectional curvature for the subspace $V$.\\
-%	\\
-%	The important thing to see here is that this can be extended for any higher dimensional manifold. Unlike previously where we were only able to discuss curvature of one and two dimensional manifolds, we've extended these notions to the point where the dimension no longer matters.
-%	\newpage
-%	\section{Conclusion}
-%	There is still much to be said about curvature and the beauty therein. Much was skipped from a traditional course in the topic and many famous and important results were not mentioned. In fact, there are even alternative ways of discussing curvature.\\
-%	\\
-%	If you are interested in learning more about this beautiful topic, the references at the end of this document are great resources to learn more about this.
 
 \newpage
-\section*{References}
-%Axler, S. (2024). Linear Algebra Done Right. Cham: Springer International Publishing. 
-%Do Carmo, M. P. (2023). Differential Geometry of Curves and Surfaces. Boca Raton: CRC Press, Taylor \& Francis Group. 
-%Lee, J. M. (2013). Introduction to Smooth Manifolds. New York: Springer. 
-%Lee, J. M. (2018). Introduction to Riemannian Manifolds. New York: Springer. 
-%Munkres, J. R. (2000). Topology. Upper Saddle River, NJ: Prentice Hall. 
+\bibliography{bibby}
+\bibliographystyle{acm}
+\nocite{*}
 \end{document}
